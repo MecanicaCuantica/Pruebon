@@ -1,1 +1,26 @@
-<p>HOLA MUNDO2</p>
+<html>
+    <head>
+        <title>* REPORTES *</title>
+    </head>
+    <body>
+            <div id="centrocentro">
+                <br>
+                <label for="reportes" > REPORTES</label> 
+            </div>
+            <br>
+            <select ng-options="elemento for elemento in collection"
+            ng-model="elegido">
+                <option value="" disabled selected> ELIJA UN REPORTE </option>
+                <option value=""> REPORTE 1 </option>
+                <option value=""> REPORTE 2 </option>
+                <option value=""> REPORTE 3 </option>
+                <option value=""> REPORTE 4 </option>
+            </select>
+    
+            <div id="espacio">
+                <textarea aria-selected="" rows="10" cols="50" ng-model="x" maxlength="200"></textarea>
+            </div>
+                
+
+    </body>
+</html>
