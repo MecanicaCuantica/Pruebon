@@ -1,6 +1,13 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
+import { ClientesAllService } from '../Services/clientes-all.service';
 
 export interface PeriodicElement {
   name: string;
@@ -8,7 +15,8 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-import {NgbModal,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+import { ProductosService } from '../Services/productos.service';
 
 @Component({
   selector: 'app-productos',
@@ -20,31 +28,41 @@ export class ProductosComponent implements OnInit {
   closeResult = '';
 
   p: number = 1;
-  collection: any[] = [{Nombre: "Wenas0",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"},
-                      {Nombre: "Wenas1",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"},
-                      {Nombre: "Wenas2",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"},
-                      {Nombre: "Wenas3",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"},
-                      {Nombre: "Wenas4",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"},
-                      {Nombre: "Wenas5",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"},
-                      {Nombre: "Wenas6",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"},
-                      {Nombre: "Wenas7",Descripcion:"Tardes",Cantidad:"2",Valor: "2000"}];
-  constructor(private modalService: NgbModal) { }
+  Productos: any[] = [];
+
+  constructor(private productoService: ProductosService, firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    
+    this.getProductos();
   }
  
   public onSave() {
     console.log("hola")
   }
 
-
-  eliminar(indice:number,pagina:number){
-    console.log(indice)
-    let p=indice+((pagina-1)*5)
-    console.log(p)
-    this.collection.splice(p,1)
+  getProductos(){
+    this.productoService.getProductos().subscribe(data => {
+      this.Productos = [];
+      data.forEach((element: any) => {
+        console.log(element.payload.doc.id);
+        this.Productos.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.Productos);
+    })
   }
+
+  eliminarProducto(id:string){
+    this.productoService.eliminarProducto(id).then(() => {
+      console.log('Cliente se fue');
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+
 
   editar(indice:number){
     console.log(indice)
@@ -54,27 +72,7 @@ export class ProductosComponent implements OnInit {
     console.log("crear")
   }
 
-  open(content:any,indice:number) {
-    this.modalService.open(content, 
-      {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      console.log("Hola")
-    });
-  }
   
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  
-
-  }
   unirbased(){
     
   }
