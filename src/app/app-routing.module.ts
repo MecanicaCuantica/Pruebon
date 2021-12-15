@@ -4,8 +4,11 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { LoginComponent } from './login/login.component';
 import { PortadaComponent } from './portada/portada.component';
+import { ProductoCRUDComponent } from './producto-crud/producto-crud.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ReportesComponent }from './reportes/reportes.component' 
+import { UsuariosCRUDComponent } from './usuarios-crud/usuarios-crud.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 import { VentasComponent } from './ventas/ventas.component';
 
 const routes: Routes = [{path: 'home', component: PortadaComponent},
@@ -16,7 +19,10 @@ const routes: Routes = [{path: 'home', component: PortadaComponent},
 {path: 'ManejoProductos', component: ProductosComponent},
 {path: 'Login', component: LoginComponent},
 {path: 'CrearUsuarios', component: CrearUsuariosComponent},
-{path: 'EditCliente/:id', component: CrearUsuariosComponent}
+{path: 'EditCliente/:id', component: CrearUsuariosComponent},
+{path: 'Usuarios', component: UsuariosComponent},
+{path: 'Usuarios_crud', component: UsuariosCRUDComponent},
+{path: 'Productos_crud', component: ProductoCRUDComponent}
 ];
 
 @NgModule({

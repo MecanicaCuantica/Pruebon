@@ -20,6 +20,9 @@ import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.componen
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosCRUDComponent } from './usuarios-crud/usuarios-crud.component';
+import { ProductoCRUDComponent } from './producto-crud/producto-crud.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     ReportesComponent,
     VentasComponent,
     ProductosComponent,
-    CrearUsuariosComponent
+    CrearUsuariosComponent,
+    UsuariosComponent,
+    UsuariosCRUDComponent,
+    ProductoCRUDComponent
   ],
   imports: [
     BrowserModule,
