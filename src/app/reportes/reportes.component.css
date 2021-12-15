@@ -1,0 +1,26 @@
+body{
+    background-color:azure;
+    width: 200 px;
+    font-family: 'Varela Round', sans-serif;
+	font-size: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#centrocentro{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    margin-left: 380px;
+    margin-right: center;
+    color:steelblue;
+    width: 200 px;
+}    
+
+#espacio{
+    
+    margin-left: 210px;
+    margin-right: 200px;
+    width: 500 px;
+    size: 500 px;
+}
+

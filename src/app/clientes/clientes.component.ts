@@ -1,4 +1,6 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 import {
   FormBuilder,
   FormGroup,
@@ -13,12 +15,14 @@ import {NgbModal,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent implements OnInit {
-  
+  items: Observable<any[]>;
   closeResult = '';
 
   p: number = 1;
   collection: any[] = [{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"}];
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, firestore: AngularFirestore) {
+    this.items = firestore.collection('clientes').valueChanges(); 
+  }
 
   ngOnInit(): void {
     
