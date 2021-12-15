@@ -9,6 +9,13 @@ import {
 import {NgbModal,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ClientesAllService } from '../Services/clientes-all.service';
 
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
 
 @Component({
   selector: 'app-clientes',

@@ -1,1 +1,38 @@
-<p>producto-crud works!</p>
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3>{{titulo}}
+                        <div *ngIf="loading" class="spinner-border float-right" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                    </h3>
+                   <span *ngIf="submitted && CreateProducto.invalid" >TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+                    
+                    <form class="mt-4" [formGroup]="CreateProducto" (ngSubmit)="agregarEditarProducto()">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="Nombre"
+                                    placeholder="Nombre">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="Descripcion"
+                                    placeholder="Descripcion">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Cantidad"
+                            placeholder="Cantidad">
+                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Valor"
+                            placeholder="Valor">
+                        <div class="mt-3">
+                            <button type="text" class="btn btn-secondary btn-lg mr-3"
+                            routerLink="/ManejoClientes">Volver</button>
+                            <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
