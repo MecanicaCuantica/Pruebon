@@ -43,10 +43,22 @@ export class CrearUsuariosComponent implements OnInit {
 
   agregarEditarEmpleado() {
     this.submitted = true;
-    console.log(this.CreateCliente)
+
+
     if(this.CreateCliente.invalid){
       return;
     }
+
+    if(this.id == null){
+      this.agregarEmpleado();
+    }
+    else{
+      this.editarEmpleado(this.id)
+    }
+    
+  }
+
+  agregarEmpleado() {
     const Cliente: any = {
       Nombre: this.CreateCliente.value.Nombre,
       Cedula: this.CreateCliente.value.Cedula,
@@ -61,18 +73,28 @@ export class CrearUsuariosComponent implements OnInit {
     }).catch(error => {
       console.log(error);
     })
-  }
-
-  agregarEmpleado() {
-   
     
   }
 
   editarEmpleado(id: string) {
+    
+    const Cliente: any = {
+      Nombre: this.CreateCliente.value.Nombre,
+      Cedula: this.CreateCliente.value.Cedula,
+      Email: this.CreateCliente.value.Email,
+      Direccion: this.CreateCliente.value.Direccion,
+      Telefono: this.CreateCliente.value.Telefono,
+      Compras: 0
+    }
 
- 
+    this.Clienteservice.editarEmpleado(id,Cliente).then(() => {
+      console.log("Editado con exito");
+      this.router.navigate(['/ManejoClientes']);
+    })
+
   }
-
+  
+    
 
   esEditar() {
     
@@ -93,4 +115,7 @@ export class CrearUsuariosComponent implements OnInit {
     }
 
 }
+
+
+  
  }

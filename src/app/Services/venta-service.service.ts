@@ -5,23 +5,24 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductosService {
+export class VentaServiceService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  agregarProducto(Cliente: any): Promise<any>{
-    return this.firestore.collection('productos').add(Cliente)
+  agregarCliente(Cliente: any): Promise<any>{
+    return this.firestore.collection('clientes').add(Cliente)
   }
 
   getProductos(): Observable<any>{
     return this.firestore.collection('productos').snapshotChanges();
   }
 
-  eliminarProducto(id: string){
-    return this.firestore.collection('productos').doc(id).delete();
+  eliminarCliente(id: string){
+    return this.firestore.collection('clientes').doc(id).delete();
   }
 
-  getProducto(id:string): Observable<any> {
-    return this.firestore.collection('productos').doc(id).snapshotChanges();
+  getCliente(id:string): Observable<any> {
+    return this.firestore.collection('clientes').doc(id).snapshotChanges();
   }
+  
 }
