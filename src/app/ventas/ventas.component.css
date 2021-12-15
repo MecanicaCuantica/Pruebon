@@ -1,1 +1,22 @@
+body{    
+    width: 200 px;
+    font-family: 'Varela Round', sans-serif;
+	font-size: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.form-floating{
+    width: 500px;
+}
+.texto2{
+    margin-left: 510px;
+    margin-top: -345px;
+}   
+.xd{
+    width: 392px;
+}
+.bottom{
+    margin-left: 510px;
+    margin-top: -60px;
 
+}
