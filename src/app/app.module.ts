@@ -16,6 +16,11 @@ import { VentasComponent } from './ventas/ventas.component';
 import { ProductosComponent } from './productos/productos.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +38,9 @@ import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.componen
     AppRoutingModule,
     NoopAnimationsModule,
     NgxPaginationModule,
-    FormsModule, ReactiveFormsModule, NgbModule
+    FormsModule, ReactiveFormsModule, NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
