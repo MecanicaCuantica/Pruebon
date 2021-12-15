@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../Services/auth.service';
 
 @Component({
@@ -8,8 +10,9 @@ import { AuthService } from '../Services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,private router: Router) { }
 
+  ingreso: boolean = false;
   usuario = {
     email: '',
     password: ''
@@ -20,6 +23,11 @@ export class LoginComponent implements OnInit {
     const {email,password} = this.usuario
     this.authService.login(email,password).then(res =>{
       console.log("Inicio de sesión exitoso",res)
+      
+      if(res !== null){
+        this.router.navigate(['/Portada'])
+      }
+      
     })
   }
 
@@ -28,6 +36,7 @@ export class LoginComponent implements OnInit {
     const {email,password} = this.usuario
     this.authService.register(email,password).then(res =>{
       console.log("Registro exitoso",res)
+      this.router.navigate(['/Portada'])
     })
   }
 
