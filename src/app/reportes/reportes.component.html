@@ -2,25 +2,28 @@
     <head>
         <title>* REPORTES *</title>
     </head>
+
     <body>
-            <div id="centrocentro">
-                <br>
-                <label for="reportes" > REPORTES</label> 
+        <div class="p-4 mb-4 bg-auto text-dark">
+            <div class="shadow-lg p-4 mb-2 bg-body rounded">
+                <div  class="mx-auto" style="width: 200px;">
+                    <span class="badge rounded-pill bg-dark">REPORTES</span>
+                </div>
             </div>
-            <br>
-            <select ng-options="elemento for elemento in collection"
-            ng-model="elegido">
-                <option value="" disabled selected> ELIJA UN REPORTE </option>
-                <option value=""> REPORTE 1 </option>
-                <option value=""> REPORTE 2 </option>
-                <option value=""> REPORTE 3 </option>
-                <option value=""> REPORTE 4 </option>
-            </select>
-    
-            <div id="espacio">
-                <textarea aria-selected="" rows="10" cols="50" ng-model="x" maxlength="200"></textarea>
-            </div>
-                
+        </div>
+       
+        <select class="form-select" aria-label="Disabled select example" width="50px">
+            <option selected>ELIJA SU REPORTE</option>
+            <option value="1">Reporte 1</option>
+            <option value="2">Reporte 2</option>
+            <option value="3">Reporte 3</option>
+        </select>
+        <br>
+        
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px"></textarea>
+            <label for="floatingTextarea2"></label>
+          </div>
 
     </body>
 </html>
