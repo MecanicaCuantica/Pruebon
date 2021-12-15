@@ -24,4 +24,8 @@ export class ClientesAllService {
   getCliente(id:string): Observable<any> {
     return this.firestore.collection('clientes').doc(id).snapshotChanges();
   }
+
+  editarEmpleado(id: string,data:any){
+    return this.firestore.collection('clientes').doc(id).update(data);
+  }
 }
