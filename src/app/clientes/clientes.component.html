@@ -8,7 +8,7 @@
                         <h2>Gestor <b>Clientes</b></h2>
                     </div>
                     <div class="col-xs-6">
-                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Cliente</span></a>
+                        <a href="/CrearUsuarios" class="btn btn-success" data-toggle="modal" ><i class="material-icons">&#xE147;</i> <span>Agregar Cliente</span></a>
                         <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of items | async; index as i">
+                    <tr *ngFor="let item of Clientes; index as i">
                         <td>
                             <span class="custom-checkbox">
                                 <input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -47,8 +47,8 @@
                         <td>{{item.Telefono}}</td>
                         <td>{{item.Compras}}</td>
                         <td>
-                            <a  class="edit" data-toggle="modal" (click)="open(content,i)"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a  class="delete" data-toggle="modal" (click)="open(content,i)"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a  class="edit" data-toggle="modal" [routerLink]= "['/EditCliente/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a  class="delete" data-toggle="modal" (click)="eliminarClientes(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
                     
@@ -82,52 +82,3 @@
     </div>        
 </div>
 
-<ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">New Friend</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="firstname">Nombre</label>
-          <div class="input-group">
-            <input id="fname" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="lastname">Cedula</label>
-          <div class="input-group">
-            <input id="lname" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="department">Email</label>
-          <div class="input-group">
-            <input id="dept" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Direccion</label>
-          <div class="input-group">
-            <input id="email2" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label> Telefono</label>
-          <div class="input-group">
-            <input id="cntry" class="form-control">
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-  </ng-template>
-
-  <div class="border text-center">
-    <button data-dismiss="modal" class="btn btn-info">Submit</button>
-</div>

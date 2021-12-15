@@ -1,7 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { ClientesAllService } from '../Services/clientes-all.service';
 @Component({
   selector: 'app-crear-usuarios',
   templateUrl: './crear-usuarios.component.html',
@@ -12,42 +13,54 @@ export class CrearUsuariosComponent implements OnInit {
 
 
  
-  createEmpleado: FormGroup;
+  CreateCliente: FormGroup;
   submitted = false;
   loading = false;
   id: string | null;
   titulo = 'Agregar Empleado';
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private Clienteservice: ClientesAllService,
+    private fb: FormBuilder,
     private router: Router,
     private aRoute: ActivatedRoute) {
-    this.createEmpleado = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      documento: ['', Validators.required],
-      salario: ['', Validators.required]
+    this.CreateCliente = this.fb.group({
+      Nombre: ['', Validators.required],
+      Cedula: ['', Validators.required],
+      Email: ['', Validators.required],
+      Direccion: ['', Validators.required],
+      Telefono: ['', Validators.required]
+
     })
     this.id = this.aRoute.snapshot.paramMap.get('id');
     console.log(this.id)
   }
+    
 
   ngOnInit(): void {
-    
+    this.esEditar()
   }
 
   agregarEditarEmpleado() {
     this.submitted = true;
-
-    if (this.createEmpleado.invalid) {
+    console.log(this.CreateCliente)
+    if(this.CreateCliente.invalid){
       return;
     }
-
-    if (this.id === null) {
-      this.agregarEmpleado();
-    } else {
-      this.editarEmpleado(this.id);
+    const Cliente: any = {
+      Nombre: this.CreateCliente.value.Nombre,
+      Cedula: this.CreateCliente.value.Cedula,
+      Email: this.CreateCliente.value.Email,
+      Direccion: this.CreateCliente.value.Direccion,
+      Telefono: this.CreateCliente.value.Telefono,
+      Compras: 0
     }
-
+    this.Clienteservice.agregarCliente(Cliente).then(() =>{
+      console.log("Cliente Llego");
+      this.router.navigate(['/ManejoClientes'])
+    }).catch(error => {
+      console.log(error);
+    })
   }
 
   agregarEmpleado() {
@@ -62,7 +75,22 @@ export class CrearUsuariosComponent implements OnInit {
 
 
   esEditar() {
-  
+    
+    if(this.id !== null){
+      this.titulo = 'Editar Empleado'
+      this.Clienteservice.getCliente(this.id).subscribe(data => {
+        this.CreateCliente.setValue({
+        Nombre: [data.payload.data()['Nombre']],
+        Cedula: [data.payload.data()['Cedula']],
+        Email: [data.payload.data()['Email']],
+        Direccion: [data.payload.data()['Direccion']],
+        Telefono: [data.payload.data()['Telefono']]
+          
+
+
+        })
+      })
+    }
 
 }
  }

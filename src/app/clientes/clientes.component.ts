@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import {NgbModal,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ClientesAllService } from '../Services/clientes-all.service';
 
 
 @Component({
@@ -15,19 +16,47 @@ import {NgbModal,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent implements OnInit {
-  items: Observable<any[]>;
-  closeResult = '';
-
   p: number = 1;
-  collection: any[] = [{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"},{Nombre: "Esteban Quito",Cedula:"43.536.415",Email:"thomashardy@mail.com",Direccion: "89 Chiaroscuro Rd, Portland, USA",Telefono:"(171) 555-2222",Compras:"20.000 COP"}];
-  constructor(private modalService: NgbModal, firestore: AngularFirestore) {
-    this.items = firestore.collection('clientes').valueChanges(); 
+  closeResult = '';
+  
+  
+  Clientes: any[] = [];
+  constructor(private clienteService: ClientesAllService, firestore: AngularFirestore) {
+    
   }
 
   ngOnInit(): void {
-    
+    this.getClientes();
   }
- 
+
+
+  getClientes(){
+    this.clienteService.getClientes().subscribe(data => {
+      this.Clientes = [];
+      data.forEach((element: any) => {
+        console.log(element.payload.doc.id);
+        this.Clientes.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.Clientes);
+    })
+  }
+
+  eliminarClientes(id:string){
+    this.clienteService.eliminarCliente(id).then(() => {
+      console.log('Cliente se fue');
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+
+
+
+
+
   public onSave() {
     console.log("hola")
   }
@@ -44,27 +73,10 @@ export class ClientesComponent implements OnInit {
     console.log("crear")
   }
 
-  open(content:any,indice:number) {
-    this.modalService.open(content, 
-      {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      console.log("Hola")
-    });
-  }
-  
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+
   
 
-  }
+  
   unirbased(){
     
   }
