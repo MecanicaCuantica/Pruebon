@@ -15,14 +15,16 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { ProductosComponent } from './productos/productos.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosCRUDComponent } from './usuarios-crud/usuarios-crud.component';
+import { ProductoCRUDComponent } from './producto-crud/producto-crud.component';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { UsuariosComponent } from './usuarios/usuarios.component';
-import { UsuariosCRUDComponent } from './usuarios-crud/usuarios-crud.component';
-import { ProductoCRUDComponent } from './producto-crud/producto-crud.component';
+
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ProductoCRUDComponent } from './producto-crud/producto-crud.component';
     NgxPaginationModule,
     FormsModule, ReactiveFormsModule, NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

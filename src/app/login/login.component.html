@@ -17,17 +17,17 @@
   
               <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example18">Correo Electrónico:</label>
-                <input type="email" id="form2Example18" class="form-control form-control-lg" />
+                <input type="email" id="form2Example18" class="form-control form-control-lg" [(ngModel)] = "usuario.email" name="em">
 
               </div>
   
               <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example28">Contraseña:</label>
-                <input type="password" id="form2Example28" class="form-control form-control-lg" />
+                <input type="password" id="form2Example28" class="form-control form-control-lg" [(ngModel)] = "usuario.password" name = "pass">
               </div>
   
               <div class="d-grid gap-2 mx-5">
-                <button class="btn btn-dark btn-lg btn-block" type="button">Ingresar</button>
+                <button class="btn btn-dark btn-lg btn-block" type="button" (click)="ingresar()">Ingresar</button>
                 <button class="btn btn-danger btn-lg btn-block" type="button">Registrar</button>
               </div>
 
