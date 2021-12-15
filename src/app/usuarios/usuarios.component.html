@@ -1,1 +1,71 @@
-<p>usuarios works!</p>
+<div class="container">
+    <div class="table-responsive" >
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <h2> <b>Usuarios</b></h2>
+                    </div>
+                    <div class="col-xs-10">
+                        <a href="/Usuarios_crud" class="btn btn-success" data-toggle="modal" ><i class="material-icons">&#xE147;</i> <span>Agregar Usuario</span></a>
+                        <!--
+                        <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
+                        -->
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover"> 
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cedula</th>
+                        <th>Email</th>
+                        <th>Ocupacion</th>
+                        <th>Dirección</th>
+                        <th>Telefono</th>
+                        <th>Usuario</th>
+                        <th>Contrasena</th>     
+                        <th>Acciones</th>
+                                            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of Usuarios; index as i">
+                        <td>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                <label for="checkbox1"></label>
+                            </span>
+                        </td>
+                        <td>{{item.Nombre}}</td>
+                        <td>{{item.Apellido}}</td>
+                        <td>{{item.Cedula}}</td>
+                        <td>{{item.Email}}</td>
+                        <td>{{item.Ocupacion}}</td>
+                        <td>{{item.Direccion}}</td>
+                        <td>{{item.Telefono}}</td>
+                        <td>{{item.Usuario}}</td>
+                        <td>{{item.Contrasena}}</td>
+                        <td>
+                            <a  class="Editar" data-toggle="modal" [routerLink]= "['/EditUsuario/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a  class="Borrar" data-toggle="modal" (click)="eliminarUsuarios(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+            <div class="clearfix">
+            <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+        </div>
+        
+    </div>        
+</div>
+
