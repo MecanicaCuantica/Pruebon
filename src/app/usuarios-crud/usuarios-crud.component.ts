@@ -41,14 +41,23 @@ export class UsuariosCRUDComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.esEditar()
   }
 
   agregarEditarUsuario() {
     this.submitted = true;
-    console.log(this.CreateUsuario)
     if(this.CreateUsuario.invalid){
       return;
     }
+    if(this.id == null){
+      this.agregarUsuario();
+    }
+    else{
+      this.editarUsuario(this.id)
+    }
+  }
+
+  agregarUsuario() {
     const Usuario: any = {
       Nombre: this.CreateUsuario.value.Nombre,
       Cedula: this.CreateUsuario.value.Cedula,
@@ -66,23 +75,31 @@ export class UsuariosCRUDComponent implements OnInit {
     }).catch(error => {
       console.log(error);
     })
-  }
-
-  agregarEmpleado() {
-   
     
   }
 
-  editarEmpleado(id: string) {
+  editarUsuario(id: string) {
+    const Usuario: any = {
+      Nombre: (this.CreateUsuario.value.Nombre).toString(),
+      Cedula: (this.CreateUsuario.value.Cedula).toString(),
+      Email: (this.CreateUsuario.value.Email).toString(),
+      Direccion: (this.CreateUsuario.value.Direccion).toString(),
+      Telefono: (this.CreateUsuario.value.Telefono).toString(),
+      Apellido: (this.CreateUsuario.value.Apellido).toString(),
+      Ocupacion: (this.CreateUsuario.value.Ocupacion).toString(),
+      Usuario: (this.CreateUsuario.value.Usuario).toString(),
+      Contrasena: (this.CreateUsuario.value.Contrasena).toString(),
+    }
+    this.Usuarioservice.editarUsuario(id,Usuario).then(() => {
+      console.log("Editado con exito");
+      this.router.navigate(['/Usuarios']);
+    })
 
- 
   }
-
 
   esEditar() {
-    
     if(this.id !== null){
-      this.titulo = 'Editar Usuario'
+      this.titulo = 'Editar Empleado'
       this.Usuarioservice.getUsuario(this.id).subscribe(data => {
         this.CreateUsuario.setValue({
         Nombre: [data.payload.data()['Nombre']],

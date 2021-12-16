@@ -29,7 +29,7 @@
                         <th>Cedula</th>
                         <th>Email</th>
                         <th>Ocupacion</th>
-                        <th>Dirección</th>
+                        <th>Direccion</th>
                         <th>Telefono</th>
                         <th>Usuario</th>
                         <th>Contrasena</th>     
@@ -55,8 +55,8 @@
                         <td>{{item.Usuario}}</td>
                         <td>{{item.Contrasena}}</td>
                         <td>
-                            <a  class="Editar" data-toggle="modal" [routerLink]= "['/EditUsuario/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a  class="Borrar" data-toggle="modal" (click)="eliminarUsuarios(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a  class="edit" data-toggle="modal" [routerLink]= "['/EditUsuario/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a  class="delete" data-toggle="modal" (click)="eliminarUsuarios(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
                     

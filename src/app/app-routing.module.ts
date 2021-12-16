@@ -21,6 +21,8 @@ const routes: Routes = [{path: 'home', component: PortadaComponent},
 {path: 'Login', component: LoginComponent},
 {path: 'CrearUsuarios', component: CrearUsuariosComponent},
 {path: 'EditCliente/:id', component: CrearUsuariosComponent},
+{path: 'EditProducto/:id', component: ProductoCRUDComponent},
+{path: 'EditUsuario/:id', component: UsuariosCRUDComponent},
 {path: 'Usuarios', component: UsuariosComponent},
 {path: 'Usuarios_crud', component: UsuariosCRUDComponent},
 {path: 'Productos_crud', component: ProductoCRUDComponent}

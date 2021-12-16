@@ -41,10 +41,22 @@ export class ProductoCRUDComponent implements OnInit {
 
   agregarEditarProducto() {
     this.submitted = true;
-    console.log(this.CreateProducto)
+
+
     if(this.CreateProducto.invalid){
       return;
     }
+
+    if(this.id == null){
+      this.agregarProducto();
+    }
+    else{
+      this.editarProducto(this.id)
+    }
+
+  }
+
+  agregarProducto() {
     const Producto: any = {
       Nombre: this.CreateProducto.value.Nombre,
       Descripcion: this.CreateProducto.value.Descripcion,
@@ -59,22 +71,30 @@ export class ProductoCRUDComponent implements OnInit {
     }).catch(error => {
       console.log(error);
     })
-  }
-
-  agregarEmpleado() {
-   
     
   }
 
-  editarEmpleado(id: string) {
+  editarProducto(id: string) {
+    const Producto: any = {
+      Nombre: (this.CreateProducto.value.Nombre).toString(),
+      Descripcion: (this.CreateProducto.value.Descripcion).toString(),
+      Cantidad: (this.CreateProducto.value.Cantidad).toString(),
+      Valor: (this.CreateProducto.value.Valor).toString()
 
+
+    }
+    this.Productoservice.editarProducto(id,Producto).then(() => {
+      console.log("Editado con exito");
+      this.router.navigate(['/ManejoClientes']);
+    })
+    
  
   }
 
   esEditar() {
     
     if(this.id !== null){
-      this.titulo = 'Editar Empleado'
+      this.titulo = 'Editar Producto'
       this.Productoservice.getProducto(this.id).subscribe(data => {
         this.CreateProducto.setValue({
         Nombre: [data.payload.data()['Nombre']],
