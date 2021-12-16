@@ -80,15 +80,15 @@ export class UsuariosCRUDComponent implements OnInit {
 
   editarUsuario(id: string) {
     const Usuario: any = {
-      Nombre: this.CreateUsuario.value.Nombre,
-      Cedula: this.CreateUsuario.value.Cedula,
-      Email: this.CreateUsuario.value.Email,
-      Direccion: this.CreateUsuario.value.Direccion,
-      Telefono: this.CreateUsuario.value.Telefono,
-      Apellido: this.CreateUsuario.value.Apellido,
-      Ocupacion: this.CreateUsuario.value.Ocupacion,
-      Usuario: this.CreateUsuario.value.Usuario,
-      Contrasena: this.CreateUsuario.value.Contrasena,
+      Nombre: (this.CreateUsuario.value.Nombre).toString(),
+      Cedula: (this.CreateUsuario.value.Cedula).toString(),
+      Email: (this.CreateUsuario.value.Email).toString(),
+      Direccion: (this.CreateUsuario.value.Direccion).toString(),
+      Telefono: (this.CreateUsuario.value.Telefono).toString(),
+      Apellido: (this.CreateUsuario.value.Apellido).toString(),
+      Ocupacion: (this.CreateUsuario.value.Ocupacion).toString(),
+      Usuario: (this.CreateUsuario.value.Usuario).toString(),
+      Contrasena: (this.CreateUsuario.value.Contrasena).toString(),
     }
     this.Usuarioservice.editarUsuario(id,Usuario).then(() => {
       console.log("Editado con exito");

@@ -24,4 +24,8 @@ export class ProductosService {
   getProducto(id:string): Observable<any> {
     return this.firestore.collection('productos').doc(id).snapshotChanges();
   }
+
+  editarProducto(id: string,data:any){
+    return this.firestore.collection('productos').doc(id).update(data);
+  }
 }
