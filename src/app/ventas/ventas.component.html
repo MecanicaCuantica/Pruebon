@@ -31,17 +31,16 @@
     <div class="xd2"> </div>
         <span class="input-group-text" id="basic-addon1">Cliente</span>
         <div class="xd">
-            <input type="text" class="form-control" placeholder="Ingrese la cedula aqui" aria-label="producto ID" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="Ingrese la cedula aqui" #clienteID aria-label="producto ID" aria-describedby="basic-addon1">
         </div>
         
 </div>
-<div class="bottom">
-    <button type="button" class="btn btn-dark">Finalizar</button>
+<div class="btn-group">
+  <button type="button" class="btn btn-primary" (click)="verificarCliente(clienteID.value)">Verificar</button>
+  <div class = "xd3"></div>
+  <button type="button" class="btn btn-dark" (click)="finalizarCompra()">Finalizar</button>  
 </div>
-<div class="bottom2">
-    <button type="button" class="btn btn-primary">Verificar</button>
-</div>
-<p>hola triple hijueputa</p>
+<p>{{clienteAux}}</p>
 
 <div class="form-floating">
     <table class="table"> 

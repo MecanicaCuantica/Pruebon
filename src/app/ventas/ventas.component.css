@@ -18,18 +18,22 @@ body{
 .xd2{
     width: 49px;
 }
+.xd3{
+    width: 10px;
+}
 
-.bottom{
-    margin-left: 1200px;
-    margin-top: -60px;
+.btn-group{
+    margin-left: 1100px;
+    margin-top: -120px;
 
 }
-.bottom2{
+.btn-group2{
     margin-left: 1100px;
-    margin-top: -45px;
+    margin-top: -105px;
 }
 p{
     margin-left: 720px;
+    margin-top: -50px;
     font-size: 20px;
     color: red;
     font-style: bold;
