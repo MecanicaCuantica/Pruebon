@@ -17,7 +17,7 @@ export class CrearUsuariosComponent implements OnInit {
   submitted = false;
   loading = false;
   id: string | null;
-  titulo = 'Agregar Empleado';
+  titulo = 'Agregar Cliente';
 
   constructor(
     private Clienteservice: ClientesAllService,

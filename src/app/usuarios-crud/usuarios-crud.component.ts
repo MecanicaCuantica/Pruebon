@@ -15,7 +15,7 @@ export class UsuariosCRUDComponent implements OnInit {
   submitted = false;
   loading = false;
   id: string | null;
-  titulo = 'Agregar Usuario';
+  titulo = 'Agregar Empleado';
 
   constructor(
     private Usuarioservice: UsuariosService,
