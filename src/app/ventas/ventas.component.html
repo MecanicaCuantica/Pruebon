@@ -2,10 +2,33 @@
 <div class="fixed-bottom">
     <button type="button" class="btn btn-dark">Dark</button>
 </div>
+<body>
+
+
+  <!-- <tr *ngFor="let item of Clientes; index as i">
+  <td>
+      <span class="custom-checkbox">
+          <input type="checkbox" id="checkbox1" name="options[]" value="1">
+          <label for="checkbox1"></label>
+      </span>
+  </td>
+  <td>{{item.Nombre}}</td>
+  <td>{{item.Cedula}}</td>
+  <td>{{item.Email}}</td>
+  <td>{{item.Direccion}}</td>
+  <td>{{item.Telefono}}</td>
+  <td>{{item.Compras}}</td>
+  <td>
+      <a  class="edit" data-toggle="modal" [routerLink]= "['/EditCliente/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+      <a  class="delete" data-toggle="modal" (click)="eliminarClientes(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+  </td>
+</tr> -->
+
+
 <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">producto ID</span>
+    <span class="input-group-text" id="basic-addon1">Busqueda producto</span>
     <div class="xd">
-        <input type="text" class="form-control" placeholder="Ingrese el código aqui" aria-label="producto ID" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Busque por nombre, descripción o valor" aria-label="producto" aria-describedby="basic-addon1" [(ngModel)]="searchText">
     </div>
 </div>
 <div class="bottom">
@@ -14,73 +37,85 @@
 <br>    
 <div class="form-floating">
     <table class="table"> 
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+      <thead>
+        <tr>
+            <th>
+                <span class="custom-checkbox">
+                    <input type="checkbox" id="selectAll">
+                    <label for="selectAll"></label>
+                </span>
+            </th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <!-- <th>Cantidad</th> -->
+            <th>Valor</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of Productos | filter:searchText; index as i">
+          <td>
+              <span class="custom-checkbox">
+                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                  <label for="checkbox1"></label>
+              </span>
+          </td>
+          <td>{{item.Nombre}}</td>
+          <td>{{item.Descripcion}}</td>
+          <!-- <td>{{item.Cantidad}}</td> -->
+          <td>{{item.Valor}}</td>
+          <td>
+              <a  class="edit" data-toggle="modal" (click) = "agregarCarrito(item)"><i class="material-icons" data-toggle="tooltip" title="Edit" >add</i></a>
+              
+          </td>
+      </tr>
+      
+  </tbody>
       </table>
           </div>
 <br> 
     <div class="texto2">
         <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
+          <thead>
+            <tr>
+                <th>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="selectAll">
+                        <label for="selectAll"></label>
+                    </span>
+                </th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              <tr *ngFor="let item of carrito; index as i">
+                <td>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                        <label for="checkbox1"></label>
+                    </span>
+                </td>
+                <td>{{item.Nombre}}</td>
+                <td>{{item.Descripcion}}</td>
+                 <td>{{item.Cantidad}}</td> 
+                <td>{{item.Valor}}</td>
+                <td>
+                    <a  class="edit" data-toggle="modal" (click) = "eliminar(item)"><i class="material-icons" data-toggle="tooltip" title="Edit">delete</i></a>
+                    
+                </td>
+            </tr>
             </tbody>
           </table>
     </div>
 <br>    
-    <div class="input-group mb-3">
+    <!-- <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">cliente ID</span>
     <div class="xd">
         <input type="text" class="form-control" placeholder="Ingrese el código aqui" aria-label="producto ID" aria-describedby="basic-addon1">
     </div>
-    </div>
+    </div> -->
 </body>
 
