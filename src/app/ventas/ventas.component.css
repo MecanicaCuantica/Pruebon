@@ -15,8 +15,23 @@ body{
 .xd{
     width: 392px;
 }
+.xd2{
+    width: 49px;
+}
+
 .bottom{
-    margin-left: 510px;
+    margin-left: 1200px;
     margin-top: -60px;
 
+}
+.bottom2{
+    margin-left: 1100px;
+    margin-top: -45px;
+}
+p{
+    margin-left: 720px;
+    font-size: 20px;
+    color: red;
+    font-style: bold;
+    font-family: monospace;
 }
