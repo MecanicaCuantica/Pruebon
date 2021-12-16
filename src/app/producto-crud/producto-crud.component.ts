@@ -72,7 +72,6 @@ export class ProductoCRUDComponent implements OnInit {
   }
 
   esEditar() {
-    
     if(this.id !== null){
       this.titulo = 'Editar Empleado'
       this.Productoservice.getProducto(this.id).subscribe(data => {
@@ -85,7 +84,6 @@ export class ProductoCRUDComponent implements OnInit {
         })
       })
     }
-
 }
 
 }

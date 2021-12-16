@@ -36,5 +36,12 @@ export class VentaServiceService {
   getVentas(): Observable<any> {
     return this.firestore.collection('ventas', ref => ref.orderBy("Fecha", "asc")).snapshotChanges();
   }
+
+  editarProducto(id: string,data:any){
+    return this.firestore.collection('productos').doc(id).update(data);
+  }
   
+  eliminarProducto(id: string){
+    return this.firestore.collection('productos').doc(id).delete();
+  }
 }

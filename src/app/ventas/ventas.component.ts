@@ -91,15 +91,12 @@ export class VentasComponent implements OnInit {
       }
       else{
         this.monto = this.carrito.reduce((a, b) => parseInt(a.Valor) + parseInt(b.Valor));
-      }
-      
+      }  
       console.log("monto", this.monto);
       this.fecha = new Date();
       console.log("fecha",this.fecha);
-      this.agregarVenta();
-
-      //console.log("idVentaActual",this.ventas);
-      console.log("COMPRA EXITOSA");
+      this.agregarVenta();   
+      console.log("COMPRA EXITOSA");    
     }
     else{
       this.clienteAux = "CLIENTE NO ENCONTRADO"
@@ -107,35 +104,75 @@ export class VentasComponent implements OnInit {
 
   }
 
+  editarProducto() {  
+    var id: any  
+    for(var i = 0; i < this.Productos.length; i++){
+      var Producto: any = {
+        Cantidad: (this.Productos[i].Cantidad).toString()          
+      }
+      id = this.Productos[i].id;
+      if (Producto.Cantidad == 0){
+        this.ventasService.eliminarProducto(id).then(() => {
+          console.log("Eliminado con exito");
+        })  
+      }
+      else{
+        this.ventasService.editarProducto(id,Producto).then(() => {
+          console.log("Editado con exito");
+        })
+      }
+  
+
+    }
+
+
+  }
 
   agregarCarrito(item: any){
    /*  console.log(Object.values()); */
    /* console.log(this.carrito.indexOf(item)) */ 
-    var itemAux = Object.assign({},item)
-    
-    console.log("hola", itemAux)
-    console.log("itemAux indexOf:",this.carrito.indexOf(itemAux))
+    var itemAux = Object.assign({},item);
+    var cantidadAux = itemAux.Cantidad;
+    console.log("cantidadAux",cantidadAux)
+    //console.log("hola", itemAux)
+    //console.log("itemAux indexOf:",this.carrito.indexOf(itemAux))
     const resultado = this.carrito.find(elemento => elemento.id === item.id);
     console.log("resultado", resultado)
 
     if (resultado !== undefined){
       console.log("holaNull")
       var index = this.carrito.indexOf(resultado);
-      this.carrito[index].Cantidad = 1 + parseInt(this.carrito[index].Cantidad);
-      this.carrito[index].Valor = parseInt(this.carrito[index].Cantidad)* parseInt(item.Valor);  
+      if (cantidadAux != 0){
+        this.carrito[index].Cantidad = 1 + parseInt(this.carrito[index].Cantidad);
+        this.Productos[this.Productos.indexOf(item)].Cantidad = parseInt(this.Productos[this.Productos.indexOf(item)].Cantidad) - 1;
+        //console.log("Cantidad producto original:",)
+        this.carrito[index].Valor = parseInt(this.carrito[index].Cantidad)* parseInt(item.Valor);  
+      }
+      
     }
     else{
       this.carrito.push(itemAux)
       this.carrito[this.carrito.length -1].Cantidad = 1
+      this.Productos[this.Productos.indexOf(item)].Cantidad = parseInt(this.Productos[this.Productos.indexOf(item)].Cantidad) - 1;
     } 
     
   }
 
   eliminar(item: any){
-    var index = this.carrito.indexOf(item)
-
-    if (index !== -1) {
-      this.carrito.splice(index, 1);
+    var index = this.carrito.indexOf(item);
+    var id = item.id;
+    var cantidadAux = item.Cantidad;
+    for(var i=0; i < this.Productos.length; i++){
+      if(this.Productos[i].id == id){
+        index = i;       
+        break; 
+      }
+    }
+    this.Productos[index].Cantidad = parseInt(this.Productos[index].Cantidad) + parseInt(cantidadAux);
+    var index2 = this.carrito.indexOf(item);
+  
+    if (index2 !== -1) {
+      this.carrito.splice(index2, 1);
     }
   }
 
@@ -148,6 +185,7 @@ export class VentasComponent implements OnInit {
     this.ventasService.agregarVenta(Venta).then(() =>{      
       this.getVentas();     
       this.agregarVentaTiene(this.idVentaActual);
+      this.editarProducto();
       console.log("Venta Llego");
     }).catch(error => {
       console.log(error);
