@@ -1,49 +1,54 @@
 <app-nav-bar></app-nav-bar>
-<div class="container pt-4">
-    <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h3>{{titulo}}
-                        <div *ngIf="loading" class="spinner-border float-right" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>
-                    </h3>
-                   <span *ngIf="submitted && CreateUsuario.invalid" >TODOS LOS CAMPOS SON OBLIGATORIOS</span>
-                    
-                    <form class="mt-4" [formGroup]="CreateUsuario" (ngSubmit)="agregarEditarUsuario()">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control form-control-lg" formControlName="Nombre"
-                                    placeholder="Nombre">
+<body>
+
+    <div class="container pt-4">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3>{{titulo}}
+                            <div *ngIf="loading" class="spinner-border float-right" role="status">
+                                <span class="sr-only">Loading...</span>
                             </div>
-                            <div class="col">
-                                <input type="text" class="form-control form-control-lg" formControlName="Cedula"
-                                    placeholder="Cedula">
+                        </h3>
+                    <span *ngIf="submitted && CreateUsuario.invalid" >TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+                        
+                        <form class="mt-4" [formGroup]="CreateUsuario" (ngSubmit)="agregarEditarUsuario()">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control form-control-lg" formControlName="Nombre"
+                                        placeholder="Nombre">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control form-control-lg" formControlName="Cedula"
+                                        placeholder="Cedula">
+                                </div>
                             </div>
-                        </div>
-                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Apellido"
-                            placeholder="Apellido">
-                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Ocupacion"
-                            placeholder="Ocupacion">
-                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Email"
-                            placeholder="Email">
-                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Direccion"
-                            placeholder="Dirección">
-                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Telefono"
-                            placeholder="Telefono">
-                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Usuario"
-                            placeholder="Usuario">
-                        <input type="text" class="form-control form-control-lg mt-3" formControlName="Contrasena"
-                            placeholder="Contrasena">
-                        <div class="mt-3">
-                            <button type="text" class="btn btn-secondary btn-lg mr-3"
-                            routerLink="/Usuarios">Volver</button>
-                            <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
-                        </div>
-                    </form>
+                            <input type="text" class="form-control form-control-lg mt-3" formControlName="Apellido"
+                                placeholder="Apellido">
+                            <input type="text" class="form-control form-control-lg mt-3" formControlName="Ocupacion"
+                                placeholder="Ocupacion">
+                            <input type="text" class="form-control form-control-lg mt-3" formControlName="Email"
+                                placeholder="Email">
+                            <input type="text" class="form-control form-control-lg mt-3" formControlName="Direccion"
+                                placeholder="Dirección">
+                            <input type="text" class="form-control form-control-lg mt-3" formControlName="Telefono"
+                                placeholder="Telefono">
+                            <input type="text" class="form-control form-control-lg mt-3" formControlName="Usuario"
+                                placeholder="Usuario">
+                            <input type="text" class="form-control form-control-lg mt-3" formControlName="Contrasena"
+                                placeholder="Contrasena">
+                            <div class="mt-3">
+                                <button type="text" class="btn btn-danger"
+                                routerLink="/Usuarios">Volver</button>
+                                <button type="submit" class="btn btn-success">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+</body>
+    
