@@ -9,8 +9,12 @@ export class VentaServiceService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  agregarCliente(Cliente: any): Promise<any>{
-    return this.firestore.collection('clientes').add(Cliente)
+  agregarVenta(venta: any): Promise<any>{
+    return this.firestore.collection('ventas').add(venta)
+  }
+
+  agregarVentaTiene(venta: any): Promise<any>{
+    return this.firestore.collection('ventaTiene').add(venta)
   }
 
   getProductos(): Observable<any>{
@@ -23,6 +27,14 @@ export class VentaServiceService {
 
   getCliente(id:string): Observable<any> {
     return this.firestore.collection('clientes').doc(id).snapshotChanges();
+  }
+
+  getClientes(): Observable<any> {
+    return this.firestore.collection('clientes').snapshotChanges();
+  }
+
+  getVentas(): Observable<any> {
+    return this.firestore.collection('ventas', ref => ref.orderBy("Fecha", "asc")).snapshotChanges();
   }
   
 }

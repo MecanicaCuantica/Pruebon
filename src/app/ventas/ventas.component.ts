@@ -9,15 +9,23 @@ import { VentaServiceService } from '../Services/venta-service.service';
 export class VentasComponent implements OnInit {
 
   constructor(private ventasService:  VentaServiceService) { }
-  Productos: any[] = []
-  carrito: any[] = []
+  Productos: any[] = [];
+  carrito: any[] = [];
   searchText: any;
+  clientes: any[] = [];
+  id: any = "";
+  monto: any;
+  fecha: any;
+  ventas: any[] = [];
+  idVentaActual: any;
 
   ngOnInit(): void {
+    this.getProductos();
     this.getClientes();
+    this.getVentas();
   }
 
-  getClientes(){
+  getProductos(){
     this.ventasService.getProductos().subscribe(data => {
       this.Productos = [];
       data.forEach((element: any) => {
@@ -31,7 +39,73 @@ export class VentasComponent implements OnInit {
     })
   }
 
-  
+  getVentas(){
+    this.ventasService.getVentas().subscribe(data => {
+      this.ventas = [];
+      data.forEach((element: any) => {
+        console.log(element.payload.doc.id);
+        this.ventas.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.ventas);
+      this.idVentaActual = this.ventas[this.ventas.length-1].id;
+    })
+  }
+
+  getClientes(){
+    this.ventasService.getClientes().subscribe(data => {
+      this.clientes = [];
+      data.forEach((element: any) => {
+        console.log(element.payload.doc.id);
+        this.clientes.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.Productos);
+    })
+  }
+
+  clienteAux: any;
+  verificarCliente(cliente: any){
+    this.clienteAux = cliente;
+    
+    const resultado = this.clientes.find(elemento => elemento.Cedula === this.clienteAux);
+    
+    if (resultado !== undefined){
+      console.log("cliente:",resultado);
+      this.clienteAux = resultado.Nombre
+      this.id = resultado.id
+    }
+    else{
+      
+    }
+  }
+
+  finalizarCompra(){
+    if (this.id != ""){
+      if (this.carrito.length == 1){
+        this.monto = this.carrito[0].Valor;
+      }
+      else{
+        this.monto = this.carrito.reduce((a, b) => parseInt(a.Valor) + parseInt(b.Valor));
+      }
+      
+      console.log("monto", this.monto);
+      this.fecha = new Date();
+      console.log("fecha",this.fecha);
+      this.agregarVenta();
+
+      //console.log("idVentaActual",this.ventas);
+      console.log("COMPRA EXITOSA");
+    }
+    else{
+      this.clienteAux = "CLIENTE NO ENCONTRADO"
+    }
+
+  }
 
 
   agregarCarrito(item: any){
@@ -63,7 +137,36 @@ export class VentasComponent implements OnInit {
     if (index !== -1) {
       this.carrito.splice(index, 1);
     }
-
   }
 
+  agregarVenta() {
+    const Venta: any = {
+      Fecha: this.fecha,
+      idCliente: this.id,
+      monto: this.monto
+    }
+    this.ventasService.agregarVenta(Venta).then(() =>{      
+      this.getVentas();     
+      this.agregarVentaTiene(this.idVentaActual);
+      console.log("Venta Llego");
+    }).catch(error => {
+      console.log(error);
+    })   
+  }
+
+  agregarVentaTiene(id:any) {
+    for(var i=0; i < this.carrito.length; i++){
+    var VentaTiene: any = {
+      idVenta: id,
+      idProducto: this.carrito[i].id
+    }
+    this.ventasService.agregarVentaTiene(VentaTiene).then(() =>{
+      this.carrito = []
+      this.clienteAux = ""
+      console.log("VentaTiene Llego");
+    }).catch(error => {
+      console.log(error);
+    })    
+  }
+}
 }
