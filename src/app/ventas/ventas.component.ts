@@ -80,7 +80,7 @@ export class VentasComponent implements OnInit {
       this.id = resultado.id
     }
     else{
-      
+      this.clienteAux = "CLIENTE NO ENCONTRADO"
     }
   }
 

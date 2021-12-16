@@ -76,14 +76,13 @@ export class CrearUsuariosComponent implements OnInit {
     
   }
 
-  editarEmpleado(id: string) {
-    
+  editarEmpleado(id: string) {    
     const Cliente: any = {
-      Nombre: this.CreateCliente.value.Nombre,
-      Cedula: this.CreateCliente.value.Cedula,
-      Email: this.CreateCliente.value.Email,
-      Direccion: this.CreateCliente.value.Direccion,
-      Telefono: this.CreateCliente.value.Telefono,
+      Nombre: (this.CreateCliente.value.Nombre).toString(),
+      Cedula: (this.CreateCliente.value.Cedula).toString(),
+      Email: (this.CreateCliente.value.Email).toString(),
+      Direccion: (this.CreateCliente.value.Direccion).toString(),
+      Telefono: (this.CreateCliente.value.Telefono).toString(),
       Compras: 0
     }
 
