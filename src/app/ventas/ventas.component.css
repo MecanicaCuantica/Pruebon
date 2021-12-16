@@ -4,13 +4,17 @@ body{
 	font-size: 30px;
     margin-left: 20px;
     margin-right: 20px;
+
 }
 .form-floating{
     width: 500px;
+    height: 500px;
 }
 .texto2{
     margin-left: 600px;
-    margin-top: -249px;
+    margin-top: -500px;
+    width: 700px;
+    height: 500px;
 }   
 .xd{
     width: 392px;
@@ -38,4 +42,8 @@ p{
     color: red;
     font-style: bold;
     font-family: monospace;
+}
+.entradas
+{
+    margin-top: 1px;
 }
