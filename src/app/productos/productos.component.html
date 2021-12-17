@@ -41,11 +41,7 @@
                       <td>{{item.Cantidad}}</td>
                       <td>{{item.Valor}}</td>
                       <td>
-<<<<<<< HEAD
                           <a  class="edit" data-toggle="modal" [routerLink]= "['/Productos_crud/']"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-=======
-                          <a  class="edit" data-toggle="modal" [routerLink]= "['/EditProducto/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
->>>>>>> 5199aac9a3be5ba5d9a5a32a1ab1a5681320da90
                           <a  class="delete" data-toggle="modal" (click)="eliminarProducto(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                       </td>
                   </tr>

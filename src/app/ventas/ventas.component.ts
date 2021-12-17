@@ -99,7 +99,7 @@ export class VentasComponent implements OnInit {
       console.log("COMPRA EXITOSA");    
     }
     else{
-      this.clienteAux = "CLIENTE NO ENCONTRADO"
+      this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE"
     }
 
   }
