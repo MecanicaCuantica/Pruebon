@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VentaServiceService } from '../Services/venta-service.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { right } from '@popperjs/core';
 
 @Component({
   selector: 'app-ventas',
@@ -69,15 +72,17 @@ export class VentasComponent implements OnInit {
       console.log(this.Productos);
     })
   }
-
+  clienteF: any;
   clienteAux: any;
   verificarCliente(cliente: any){
+    
     this.clienteAux = cliente;
     
     const resultado = this.clientes.find(elemento => elemento.Cedula === this.clienteAux);
     this.clienteF = resultado;
     console.log("resultado:", resultado);
     if (resultado !== undefined){
+      this.clienteF=resultado;
       console.log("cliente:",resultado);
       this.clienteAux = resultado.Nombre
       this.id = resultado.id
@@ -90,7 +95,27 @@ export class VentasComponent implements OnInit {
   }
 
   finalizarCompra(){
-    if (this.validaId == true){
+     
+    const doc = new jsPDF();
+    var img = new Image();
+    var img2 = new Image();
+    img.src = "assets/Imagenes/topfac.png";
+    img2.src = "assets/Imagenes/nota.png"
+    doc.text('Articulo', 10, 100);
+    doc.text('Cantidad', 70, 100);
+    doc.text('Valor', 130, 100);
+    doc.text('Total', 180, 100);
+    doc.text('Cobrar a:', 10, 50);
+    doc.text((this.clienteF.Nombre).toString(), 10, 57);
+    doc.text((this.clienteF.Cedula).toString(), 10, 62);
+    doc.text('Enviar a:', 70, 50);
+    doc.text((this.clienteF.Direccion).toString(), 70, 57);
+    doc.text('Tulua', 70, 62);
+    
+
+    var y = 100;
+    var total = 0;
+    if (this.id != ""){
       if (this.carrito.length == 1){
         this.monto = this.carrito[0].Valor;
       }
@@ -99,13 +124,40 @@ export class VentasComponent implements OnInit {
       }  
       console.log("monto", this.monto);
       this.fecha = new Date();
+      console.log("carrito",this.carrito)
+      for(var i=0; i<this.carrito.length; i++){
+        total=total+parseInt(this.carrito[i].Valor);
+        y=y+10;
+        doc.text((this.carrito[i].Nombre).toString(),10,y);
+        doc.text((this.carrito[i].Cantidad).toString(),70,y);
+        doc.text((this.carrito[i].Valor/this.carrito[i].Cantidad).toString(),130,y);
+        doc.text((this.carrito[i].Valor).toString(),180,y);
+      }
+      doc.text('Fecha:', 100, 50);
+      doc.text((this.fecha).toString(), 140, 50);
+      doc.text('Condiciones de pago:', 100, 60);
+      doc.text('Efectivo', 140, 60);
+      doc.text('Fecha de vencimiento:', 100, 70);
+      doc.text((this.fecha).toString(), 140, 70);
+      doc.text('Saldo adeudado:', 100, 80);
+      doc.text((total).toString(), 140, 80);
+
+      y=y+10;
+      doc.text((total).toString(),180,y);
       console.log("fecha",this.fecha);
       this.agregarVenta();   
-      console.log("COMPRA EXITOSA");    
+      console.log("COMPRA EXITOSA");  
+      y=y+50
+      doc.addImage(img2,'png',10,y,80,25);
+      doc.addImage(img,'png',0,0,200,40);
+      doc.save('Factura'); 
+      
+      
     }
     else{
       this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE"
     }
+    
 
   }
 
