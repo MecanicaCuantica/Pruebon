@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../Services/auth.service';
 import { UsuariosService } from '../Services/usuarios.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class UsuariosCRUDComponent implements OnInit {
   titulo = 'Agregar Empleado';
 
   constructor(
+    private authService:AuthService,
     private Usuarioservice: UsuariosService,
     private fb: FormBuilder,
     private router: Router,
@@ -34,9 +36,11 @@ export class UsuariosCRUDComponent implements OnInit {
       Contrasena: ['', Validators.required]
 
     })
+    
     this.id = this.aRoute.snapshot.paramMap.get('id');
     console.log(this.id)
 
+    
 
   }
 
@@ -74,6 +78,11 @@ export class UsuariosCRUDComponent implements OnInit {
       this.router.navigate(['/Usuarios'])
     }).catch(error => {
       console.log(error);
+    })
+    this.authService.register(Usuario.Email,Usuario.Contrasena).then(res =>{
+      console.log("Registro exitoso",res)
+      
+      
     })
     
   }
