@@ -28,8 +28,12 @@ export class ReportesComponent implements OnInit {
   productoMasVendidoID: any;
   productoMasVendido: any;
   opcion1: boolean = false;
+  opcion2: boolean = false;
+  opcion3: boolean = false;
+  opcion4: boolean = false;
   VectorFR3: any[] = [];
   ventasReportes: any[] = [];
+  ClientesVectorFR3: any[] = [];
 
   constructor(private reportesService:  ReportesService) { }
 
@@ -108,8 +112,13 @@ export class ReportesComponent implements OnInit {
 
   obtenerListadoClientesMonto(valor: any){
     valor = valor.target.value
+    
     console.log("ventas",this.ventas)
     if (valor == "1"){
+      this.opcion1 = true;
+      this.opcion2 = false;
+      this.opcion3 = false;
+      this.opcion4 = false;
       var monto: any
       var aux = 0
       for(var i=0; i<this.ventas.length; i++){
@@ -138,9 +147,22 @@ export class ReportesComponent implements OnInit {
       //return this.elegirMayor();
     }
     else if (valor == "2"){
+      this.opcion1 = false;
+      this.opcion2 = true;
+      this.opcion3 = false;
+      this.opcion4 = false;
       console.log("entra reporte 2", this.ventaTiene)
       this.setProductosMasVendidos();
       this.obtenerProductoMasVendido();
+
+
+    }
+    else if (valor == "3"){
+      this.opcion1 = false;
+      this.opcion2 = false;
+      this.opcion3 = true;
+      this.opcion4 = false;
+
 
 
     }
@@ -221,6 +243,10 @@ export class ReportesComponent implements OnInit {
     }
   }
   reporte3(FechaInicial:any,FechaFinal:any){
+    this.opcion1 = false;
+    this.opcion2 = false;
+    this.opcion3 = true;
+    this.VectorFR3 = []
     var Inicial = FechaInicial.split("-");
     var Final = FechaFinal.split("-");
    
@@ -234,10 +260,14 @@ export class ReportesComponent implements OnInit {
 
     for(var j =0;j < this.ventasReportes.length;j++){
       if((this.ventasReportes[j].Fecha > InicialFactor) && (this.ventasReportes[j].Fecha < FinalFactor)){
-        this.VectorFR3.push(this.ventasReportes[j])
+        this.VectorFR3.push(Object.assign(this.ventasReportes[j],this.clientes.find(elemento => elemento.id === this.ventasReportes[j].idCliente)));
+        
+        
+        
       }
     }
     console.log(this.VectorFR3)
+    this.opcion4 = true;
   }
 
 
