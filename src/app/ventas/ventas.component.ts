@@ -72,7 +72,6 @@ export class VentasComponent implements OnInit {
       console.log(this.Productos);
     })
   }
-  clienteF: any;
   clienteAux: any;
   verificarCliente(cliente: any){
     
@@ -115,7 +114,7 @@ export class VentasComponent implements OnInit {
 
     var y = 100;
     var total = 0;
-    if (this.id != ""){
+    if (this.validaId == true){
       if (this.carrito.length == 1){
         this.monto = this.carrito[0].Valor;
       }
