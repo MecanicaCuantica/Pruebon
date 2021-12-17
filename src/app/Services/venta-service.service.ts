@@ -40,6 +40,10 @@ export class VentaServiceService {
   editarProducto(id: string,data:any){
     return this.firestore.collection('productos').doc(id).update(data);
   }
+
+  editarCliente(id: string,data:any){
+    return this.firestore.collection('clientes').doc(id).update(data);
+  }
   
   eliminarProducto(id: string){
     return this.firestore.collection('productos').doc(id).delete();

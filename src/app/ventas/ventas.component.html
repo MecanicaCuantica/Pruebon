@@ -47,9 +47,6 @@
     <table class="table"> 
       <thead>
         <tr>
-            <th>
-                
-            </th>
             <th>Nombre</th>
             <th>Descripción</th>
             <!-- <th>Cantidad</th> -->
@@ -59,9 +56,6 @@
 
     <tbody>
       <tr *ngFor="let item of Productos | filter:searchText; index as i">
-          <td>
-              
-          </td>
           <td>{{item.Nombre}}</td>
           <td>{{item.Descripcion}}</td>
           <!-- <td>{{item.Cantidad}}</td> -->

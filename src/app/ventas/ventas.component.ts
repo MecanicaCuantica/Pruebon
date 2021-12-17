@@ -14,6 +14,7 @@ export class VentasComponent implements OnInit {
   searchText: any;
   clientes: any[] = [];
   id: any = "";
+  clienteF: any;
   validaId: any;
   monto: any;
   fecha: any;
@@ -74,6 +75,7 @@ export class VentasComponent implements OnInit {
     this.clienteAux = cliente;
     
     const resultado = this.clientes.find(elemento => elemento.Cedula === this.clienteAux);
+    this.clienteF = resultado;
     console.log("resultado:", resultado);
     if (resultado !== undefined){
       console.log("cliente:",resultado);
@@ -83,6 +85,7 @@ export class VentasComponent implements OnInit {
     }
     else{
       this.clienteAux = "CLIENTE NO ENCONTRADO"
+      this.validaId = false
     }
   }
 
@@ -123,11 +126,18 @@ export class VentasComponent implements OnInit {
           console.log("Editado con exito");
         })
       }
-  
-
     }
+  }
 
-
+  editarCliente() {  
+    var id: any  
+      var Clientes: any = {
+        Compras: parseInt(this.clienteF.Compras) + parseInt(this.monto)          
+      }
+      id = this.clienteF.id;
+        this.ventasService.editarCliente(id, Clientes).then(() => {
+          console.log("Editado con exito");
+        })  
   }
 
   agregarCarrito(item: any){
@@ -188,6 +198,7 @@ export class VentasComponent implements OnInit {
       this.getVentas();     
       this.agregarVentaTiene(this.idVentaActual);
       this.editarProducto();
+      this.editarCliente();
       console.log("Venta Llego");
     }).catch(error => {
       console.log(error);
