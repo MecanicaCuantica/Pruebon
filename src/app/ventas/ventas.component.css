@@ -2,9 +2,9 @@ body{
     width: 200 px;
     font-family: 'Varela Round', sans-serif;
 	font-size: 30px;
-    margin-left: 20px;
+    /* margin-left: 20px;
     margin-right: 20px;
-
+ */
 }
 .form-floating{
     width: 500px;
@@ -39,11 +39,24 @@ p{
     margin-left: 720px;
     margin-top: -50px;
     font-size: 20px;
-    color: red;
+    color: rgb(255, 255, 255);
     font-style: bold;
     font-family: monospace;
 }
 .entradas
 {
     margin-top: 1px;
+}
+th{
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 30px;
+}
+td{
+    color: rgb(216, 216, 216);
+    font-family: monospace;
+    font-size: 23px;
+}
+i{
+    color: white;
 }

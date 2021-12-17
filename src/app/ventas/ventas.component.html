@@ -1,5 +1,6 @@
 <app-nav-bar></app-nav-bar>
-<body>
+<body background=
+"assets\Imagenes\portada5.jpg">
     
 
   <!-- <tr *ngFor="let item of Clientes; index as i">
@@ -47,13 +48,10 @@
       <thead>
         <tr>
             <th>
-                <span class="custom-checkbox">
-                    <input type="checkbox" id="selectAll">
-                    <label for="selectAll"></label>
-                </span>
+                
             </th>
             <th>Nombre</th>
-            <th>Descripcion</th>
+            <th>Descripción</th>
             <!-- <th>Cantidad</th> -->
             <th>Valor</th>
         </tr>
@@ -62,10 +60,7 @@
     <tbody>
       <tr *ngFor="let item of Productos | filter:searchText; index as i">
           <td>
-              <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                  <label for="checkbox1"></label>
-              </span>
+              
           </td>
           <td>{{item.Nombre}}</td>
           <td>{{item.Descripcion}}</td>
@@ -88,13 +83,9 @@
       <thead>
         <tr>
             <th>
-                <span class="custom-checkbox">
-                    <input type="checkbox" id="selectAll">
-                    <label for="selectAll"></label>
-                </span>
             </th>
             <th>Nombre</th>
-            <th>Descripcion</th>
+            <th>Descripción</th>
             <th>Cantidad</th>
             <th>Valor</th>
         </tr>
@@ -102,10 +93,6 @@
         <tbody>
           <tr *ngFor="let item of carrito; index as i">
             <td>
-                <span class="custom-checkbox">
-                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                    <label for="checkbox1"></label>
-                </span>
             </td>
             <td>{{item.Nombre}}</td>
             <td>{{item.Descripcion}}</td>
