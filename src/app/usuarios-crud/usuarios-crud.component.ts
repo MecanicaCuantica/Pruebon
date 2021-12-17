@@ -27,13 +27,13 @@ export class UsuariosCRUDComponent implements OnInit {
     this.CreateUsuario = this.fb.group({
       Nombre: ['', Validators.required],
       Cedula: ['', Validators.required],
-      Email: ['', Validators.required],
+      Email: ['', [Validators.required, Validators.email]],
       Direccion: ['', Validators.required],
       Telefono: ['', Validators.required],
       Apellido: ['', Validators.required],
       Ocupacion: ['', Validators.required],
-      Usuario: ['', Validators.required],
-      Contrasena: ['', Validators.required]
+      // Usuario: ['', Validators.required],
+      Contrasena: ['', [Validators.required, Validators.minLength(6)]]
 
     })
     
@@ -70,7 +70,7 @@ export class UsuariosCRUDComponent implements OnInit {
       Telefono: this.CreateUsuario.value.Telefono,
       Apellido: this.CreateUsuario.value.Apellido,
       Ocupacion: this.CreateUsuario.value.Ocupacion,
-      Usuario: this.CreateUsuario.value.Usuario,
+      // Usuario: this.CreateUsuario.value.Usuario,
       Contrasena: this.CreateUsuario.value.Contrasena,
     }
     this.Usuarioservice.agregarUsuario(Usuario).then(() =>{
@@ -96,7 +96,7 @@ export class UsuariosCRUDComponent implements OnInit {
       Telefono: (this.CreateUsuario.value.Telefono).toString(),
       Apellido: (this.CreateUsuario.value.Apellido).toString(),
       Ocupacion: (this.CreateUsuario.value.Ocupacion).toString(),
-      Usuario: (this.CreateUsuario.value.Usuario).toString(),
+      // Usuario: (this.CreateUsuario.value.Usuario).toString(),
       Contrasena: (this.CreateUsuario.value.Contrasena).toString(),
     }
     this.Usuarioservice.editarUsuario(id,Usuario).then(() => {
@@ -118,7 +118,7 @@ export class UsuariosCRUDComponent implements OnInit {
         Telefono: [data.payload.data()['Telefono']],
         Apellido: [data.payload.data()['Apellido']],
         Ocupacion: [data.payload.data()['Ocupacion']],
-        Usuario: [data.payload.data()['Usuario']],
+        // Usuario: [data.payload.data()['Usuario']],
         Contrasena: [data.payload.data()['Contrasena']]  
 
         })
