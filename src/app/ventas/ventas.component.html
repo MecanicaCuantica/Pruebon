@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
-
-<body>
-
+<body background=
+"assets\Imagenes\portada5.jpg">
+    
 
   <!-- <tr *ngFor="let item of Clientes; index as i">
   <td>
@@ -22,7 +22,7 @@
   </td>
 </tr> -->
 
-
+<div class="entradas">
 <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Busqueda producto</span>
     <div class="xd">
@@ -41,20 +41,18 @@
   <button type="button" class="btn btn-dark" (click)="finalizarCompra()">Finalizar</button>  
 </div>
 <p>{{clienteAux}}</p>
+</div>
 
 <div class="form-floating">
     <table class="table"> 
       <thead>
         <tr>
             <th>
-                <span class="custom-checkbox">
-                    <input type="checkbox" id="selectAll">
-                    <label for="selectAll"></label>
-                </span>
+                
             </th>
             <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Cantidad</th>
+            <th>Descripción</th>
+            <!-- <th>Cantidad</th> -->
             <th>Valor</th>
         </tr>
     </thead>
@@ -62,14 +60,11 @@
     <tbody>
       <tr *ngFor="let item of Productos | filter:searchText; index as i">
           <td>
-              <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                  <label for="checkbox1"></label>
-              </span>
+              
           </td>
           <td>{{item.Nombre}}</td>
           <td>{{item.Descripcion}}</td>
-          <td>{{item.Cantidad}}</td>
+          <!-- <td>{{item.Cantidad}}</td> -->
           <td>{{item.Valor}}</td>
           <td>
               <a  class="edit" data-toggle="modal" (click) = "agregarCarrito(item)"><i class="material-icons" data-toggle="tooltip" title="Edit" >add</i></a>
@@ -79,45 +74,37 @@
       
   </tbody>
       </table>
-          </div>
-<br> 
-    <div class="texto2">
-        <table class="table">
-          <thead>
-            <tr>
-                <th>
-                    <span class="custom-checkbox">
-                        <input type="checkbox" id="selectAll">
-                        <label for="selectAll"></label>
-                    </span>
-                </th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Cantidad</th>
-                <th>Valor</th>
-            </tr>
-        </thead>
-            <tbody>
-              <tr *ngFor="let item of carrito; index as i">
-                <td>
-                    <span class="custom-checkbox">
-                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                        <label for="checkbox1"></label>
-                    </span>
-                </td>
-                <td>{{item.Nombre}}</td>
-                <td>{{item.Descripcion}}</td>
-                 <td>{{item.Cantidad}}</td> 
-                <td>{{item.Valor}}</td>
-                <td>
-                    <a  class="edit" data-toggle="modal" (click) = "eliminar(item)"><i class="material-icons" data-toggle="tooltip" title="Edit">delete</i></a>
-                    
-                </td>
-            </tr>
-            </tbody>
-          </table>
-    </div>
-<br>    
+          
+   
+</div>
 
+<div class="texto2">
+    <table class="table">
+      <thead>
+        <tr>
+            <th>
+            </th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+        <tbody>
+          <tr *ngFor="let item of carrito; index as i">
+            <td>
+            </td>
+            <td>{{item.Nombre}}</td>
+            <td>{{item.Descripcion}}</td>
+             <td>{{item.Cantidad}}</td> 
+            <td>{{item.Valor}}</td>
+            <td>
+                <a  class="edit" data-toggle="modal" (click) = "eliminar(item)"><i class="material-icons" data-toggle="tooltip" title="Edit">delete</i></a>
+                
+            </td>
+        </tr>
+        </tbody>
+      </table>
+</div>
 </body>
 
