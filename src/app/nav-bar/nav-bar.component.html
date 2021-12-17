@@ -1,17 +1,16 @@
-<nav class="navbar navbar-expand-lg" style="background: hsl(209, 58%, 38%);">
+<nav class="navbar navbar-expand-lg" style="background: hsl(209, 58%, 38%); text-align: center;">
     <a class="navbar-brand" href="/home"><img src="assets\Imagenes\logo.png" width="100px" height="50px" ></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="nav navbar-nav navbar-center">
         <li class="nav-item">
           <a class="nav-link" href="ManejoClientes" >Manejo Clientes<br><i class="material-icons">perm_identity</i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="ManejoProductos">Manejo Productos<br><i class="material-icons">business_center</i></a>
-
         </li>
         <li *ngIf="mostrarCrearU" class="nav-item"> 
           <a class="nav-link" href="Reportes">Reportes<br><i class="material-icons">assessment</i></a>
@@ -19,32 +18,13 @@
         <li class="nav-item">
           <a class="nav-link" href="Ventas">Ventas<br><i class="material-icons">attach_money</i></a>
         </li>
-      <!--   <li class="nav-item">
-          <a class="nav-link" href="Login">Login(Momentaneo)</a>
-        </li>
-        
-        <li   class="nav-item">
-          <a class="nav-link" href="CrearUsuarios">CrearUsuarios(Momentaneo)</a>
-        </li> -->
+
         <li  *ngIf="mostrarCrearU" class="nav-item">
           <a class="nav-link" href="Usuarios">Empleados<br><i class="material-icons">perm_identity</i></a>
         </li>
-       <!--  <li class="nav-item">
-          <a class="nav-link" href="Usuarios_crud">Agregar Empleado</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Productos_crud">Agregar Producto</a>
-        </li> -->
-        <li class="espacio">
-          
-        </li>
-        <li class="nav-item">
-            <button class="btn btn-danger" style="height: 50px; width: 110px; font-size: smaller;" (click)="logout()">Cerrar Sesión</button>      
-          <!-- <a class="nav-link" href="Productos_crud">Agregar Producto</a> -->
-        </li>
-        
-
-        
       </ul>
     </div>
+    <div class="position-absolute top-50 end-0 translate-middle-y">
+          <button class="btn btn-danger" style="height: auto; width: auto; font-size: smaller;" (click)="logout()">Cerrar Sesión</button> 
+      </div>
   </nav>
