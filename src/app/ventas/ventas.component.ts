@@ -95,7 +95,7 @@ export class VentasComponent implements OnInit {
 
   finalizarCompra(){
     
-    if (this.validaId == true){
+    if (this.validaId == true && this.carrito.length != 0){
     console.log("validaID",this.validaId);
     const doc = new jsPDF();
     var img = new Image();
@@ -154,7 +154,17 @@ export class VentasComponent implements OnInit {
       
     }
     else{
-      this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE"
+      if(this.carrito.length == 0 && this.validaId == true){
+        this.clienteAux = "CARRITO VACÍO";
+      }
+      else if (this.validaId != true && this.carrito.length == 0){
+        this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE Y CARRITO VACÍO";     
+      }
+      else{
+        this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE";
+      }
+      
+      
     }
     
 
