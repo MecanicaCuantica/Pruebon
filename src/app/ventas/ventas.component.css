@@ -1,5 +1,6 @@
 body{    
-    width: 200 px;
+    width: auto;
+    height: auto;
     font-family: 'Varela Round', sans-serif;
 	font-size: 30px;
     /* margin-left: 20px;
@@ -11,29 +12,34 @@ body{
     height: 500px;
 }
 .texto2{
-    margin-left: 600px;
+    margin-left: 550px;
     margin-top: -500px;
     width: 700px;
     height: 500px;
 }   
 .xd{
-    width: 392px;
+    width: 340px;
+    height: auto;
 }
 .xd2{
     width: 49px;
+    height: auto;
 }
 .xd3{
     width: 10px;
+    height: auto;
 }
 
 .btn-group{
     margin-left: 1100px;
     margin-top: -120px;
+    
 
 }
 .btn-group2{
     margin-left: 1100px;
     margin-top: -105px;
+    
 }
 p{
     margin-left: 720px;
@@ -46,17 +52,24 @@ p{
 .entradas
 {
     margin-top: 1px;
+    
 }
 th{
     color: #ffffff;
     font-family: monospace;
-    font-size: 30px;
+    font-size: 15px;
 }
 td{
     color: rgb(216, 216, 216);
     font-family: monospace;
-    font-size: 23px;
+    font-size: 15px;
 }
 i{
     color: white;
+}
+.tablas{
+    height: auto;
+}
+.tablas2{
+    height: auto;
 }
