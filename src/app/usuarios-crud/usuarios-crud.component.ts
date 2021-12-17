@@ -75,15 +75,13 @@ export class UsuariosCRUDComponent implements OnInit {
     }
     this.Usuarioservice.agregarUsuario(Usuario).then(() =>{
       console.log("Usuario Llego");
+      this.authService.register(Usuario.Email,Usuario.Contrasena).then(res =>{
+        console.log("Registro exitoso",res)})
       this.router.navigate(['/Usuarios'])
     }).catch(error => {
       console.log(error);
     })
-    this.authService.register(Usuario.Email,Usuario.Contrasena).then(res =>{
-      console.log("Registro exitoso",res)
-      
-      
-    })
+    
     
   }
 
