@@ -9,33 +9,21 @@
                   </div>
                   <div class="col-xs-6">
                       <a href="/Productos_crud" class="btn btn-success" data-toggle="modal" ><i class="material-icons">&#xE147;</i> <span>Agregar Producto</span></a>
-                      <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
                   </div>
               </div>
           </div>
           <table class="table table-striped table-hover"> 
               <thead>
                   <tr>
-                      <th>
-                          <span class="custom-checkbox">
-                              <input type="checkbox" id="selectAll">
-                              <label for="selectAll"></label>
-                          </span>
-                      </th>
-                        <th>Nombre</th>
-                      <th>Descripcion</th>
-                      <th>Cantidad</th>
-                      <th>Valor</th>
+                    <th style="background:  hsl(209, 58%, 38%) ; color: white;">Nombre</th>
+                    <th style="background:  hsl(209, 58%, 38%) ; color: white;">Descripcion</th>
+                    <th style="background:  hsl(209, 58%, 38%) ; color: white;">Cantidad</th>
+                    <th style="background:  hsl(209, 58%, 38%) ; color: white;">Valor</th>
+                    <th style="background:  hsl(209, 58%, 38%) ; color: white;">Acciones</th>
                   </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let item of Productos; index as i">
-                      <td>
-                          <span class="custom-checkbox">
-                              <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                              <label for="checkbox1"></label>
-                          </span>
-                      </td>
                       <td>{{item.Nombre}}</td>
                       <td>{{item.Descripcion}}</td>
                       <td>{{item.Cantidad}}</td>

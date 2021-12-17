@@ -8,38 +8,25 @@
                         <h2>Gestor <b>Clientes</b></h2>
                     </div>
                     <div class="col-xs-6">
-                        <a href="/CrearUsuarios" class="btn btn-success" data-toggle="modal" ><i class="material-icons">&#xE147;</i> <span>Agregar Cliente</span></a>
-                        <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
+                        <a href="/CrearUsuarios" class="btn btn-success" data-toggle="modal" ><i class="material-icons">&#xE147;</i> <span>Agregar Cliente</span></a>						
                     </div>
                 </div>
             </div>
             <table class="table table-striped table-hover"> 
                 <thead>
                     <tr>
-                        <th>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="selectAll">
-                                <label for="selectAll"></label>
-                            </span>
-                        </th>
-                          <th>Nombre</th>
-                        <th>Cedula</th>
-                        <th>Email</th>
-                        <th>Dirección</th>
-                        <th>Telefono</th>
-                          <th>Compras</th>       
-                        <th>Acciones</th>
-                                            
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Nombre</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Cedula</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Email</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Dirección</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Telefono</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Compras</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Acciones</th>                  
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of Clientes; index as i">
-                        <td>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                <label for="checkbox1"></label>
-                            </span>
-                        </td>
+
                         <td>{{item.Nombre}}</td>
                         <td>{{item.Cedula}}</td>
                         <td>{{item.Email}}</td>

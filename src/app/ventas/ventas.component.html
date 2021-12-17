@@ -21,7 +21,7 @@
       <a  class="delete" data-toggle="modal" (click)="eliminarClientes(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
   </td>
 </tr> -->
-
+<br>
 <div class="entradas">
 <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Busqueda producto</span>
@@ -42,14 +42,14 @@
 </div>
 <p>{{clienteAux}}</p>
 </div>
-
+<div class="tablas"> 
 <div class="form-floating">
     <table class="table"> 
       <thead>
         <tr>
             <th>Nombre</th>
             <th>Descripción</th>
-            <!-- <th>Cantidad</th> -->
+            <th>Cantidad</th>
             <th>Valor</th>
         </tr>
     </thead>
@@ -58,7 +58,7 @@
       <tr *ngFor="let item of Productos | filter:searchText; index as i">
           <td>{{item.Nombre}}</td>
           <td>{{item.Descripcion}}</td>
-          <!-- <td>{{item.Cantidad}}</td> -->
+          <td>{{item.Cantidad}}</td>
           <td>{{item.Valor}}</td>
           <td>
               <a  class="edit" data-toggle="modal" (click) = "agregarCarrito(item)"><i class="material-icons" data-toggle="tooltip" title="Edit" >add</i></a>
@@ -71,13 +71,11 @@
           
    
 </div>
-
+<div class="tablas2">
 <div class="texto2">
     <table class="table">
       <thead>
         <tr>
-            <th>
-            </th>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Cantidad</th>
@@ -86,8 +84,6 @@
     </thead>
         <tbody>
           <tr *ngFor="let item of carrito; index as i">
-            <td>
-            </td>
             <td>{{item.Nombre}}</td>
             <td>{{item.Descripcion}}</td>
              <td>{{item.Cantidad}}</td> 
@@ -99,6 +95,8 @@
         </tr>
         </tbody>
       </table>
+</div>
+</div>
 </div>
 </body>
 

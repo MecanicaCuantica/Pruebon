@@ -27,6 +27,7 @@ export class ReportesComponent implements OnInit {
   mayorID: any;
   productoMasVendidoID: any;
   productoMasVendido: any;
+  opcion1: boolean = false;
 
   constructor(private reportesService:  ReportesService) { }
 
@@ -162,6 +163,7 @@ export class ReportesComponent implements OnInit {
       if(this.clientes[i].id == this.mayorID){
         this.mejorCliente = this.clientes[i];
         console.log(this.clientes[i]); // Acomodar para mostrar en la interfaz
+        this.opcion1=true;
         break
       }
     }
