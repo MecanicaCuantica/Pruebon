@@ -166,6 +166,12 @@ export class ReportesComponent implements OnInit {
 
 
     }
+    else {
+      this.opcion1 = false;
+      this.opcion2 = false;
+      this.opcion3 = false;
+      this.opcion4 = false;
+    }
   }
 
   elegirMayor(){
@@ -188,7 +194,7 @@ export class ReportesComponent implements OnInit {
       if(this.clientes[i].id == this.mayorID){
         this.mejorCliente = this.clientes[i];
         console.log(this.clientes[i]); // Acomodar para mostrar en la interfaz
-        this.opcion1=true;
+        
         break
       }
     }
