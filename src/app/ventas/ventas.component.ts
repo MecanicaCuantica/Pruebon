@@ -17,6 +17,7 @@ export class VentasComponent implements OnInit {
   searchText: any;
   clientes: any[] = [];
   id: any = "";
+  validaId: any;
   monto: any;
   fecha: any;
   ventas: any[] = [];
@@ -77,12 +78,13 @@ export class VentasComponent implements OnInit {
     this.clienteAux = cliente;
     
     const resultado = this.clientes.find(elemento => elemento.Cedula === this.clienteAux);
-    
+    console.log("resultado:", resultado);
     if (resultado !== undefined){
       this.clienteF=resultado;
       console.log("cliente:",resultado);
       this.clienteAux = resultado.Nombre
       this.id = resultado.id
+      this.validaId = true
     }
     else{
       this.clienteAux = "CLIENTE NO ENCONTRADO"

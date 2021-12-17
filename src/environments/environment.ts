@@ -7,6 +7,7 @@ export const environment = {
   firebase: {
     apiKey: "AIzaSyDz3yJwPjMuIJnnOeKjVaahmvhlFnBUl0w",
     authDomain: "veterinaria-51833.firebaseapp.com",
+    databaseURL: "https://veterinaria-51833-default-rtdb.firebaseio.com",
     projectId: "veterinaria-51833",
     storageBucket: "veterinaria-51833.appspot.com",
     messagingSenderId: "65455665515",

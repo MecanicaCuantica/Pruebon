@@ -3,9 +3,11 @@ export const environment = {
   firebase: {
     apiKey: "AIzaSyDz3yJwPjMuIJnnOeKjVaahmvhlFnBUl0w",
     authDomain: "veterinaria-51833.firebaseapp.com",
+    databaseURL: "https://veterinaria-51833-default-rtdb.firebaseio.com",
     projectId: "veterinaria-51833",
     storageBucket: "veterinaria-51833.appspot.com",
     messagingSenderId: "65455665515",
     appId: "1:65455665515:web:d7ba0d7475f86badcb5c2e",
-    measurementId: "G-28JP49WL7F"}
+    measurementId: "G-28JP49WL7F"
+  }
 };
