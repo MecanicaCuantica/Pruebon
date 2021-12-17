@@ -85,10 +85,8 @@ export class ProductoCRUDComponent implements OnInit {
     }
     this.Productoservice.editarProducto(id,Producto).then(() => {
       console.log("Editado con exito");
-      this.router.navigate(['/ManejoClientes']);
-    })
-    
- 
+      this.router.navigate(['/ManejoProductos']);
+    })   
   }
 
   esEditar() {
