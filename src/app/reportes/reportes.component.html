@@ -16,7 +16,7 @@
         <select class="form-select" aria-label="Disabled select example" style="background: hsl(209, 58%, 38%); color: white; margin-left: 250px;" width="280px" (change)="obtenerClienteMayor($event)">
             <option [value]="0" >ELIJA SU REPORTE</option>
             <option [value]="1">Mejor cliente</option>
-            <option [value]="2">Producto más vendidos</option>
+            <option [value]="2">Producto más vendido</option>
             <option [value]="3">Ventas en rango de fechas</option>
         </select>
         <table *ngIf="opcion1" style="width: 400px; color: white; background: hsl(209, 58%, 38%);
@@ -46,20 +46,18 @@
         height: 100px; margin-left: 532px; margin-top: -40px;" class="table table-striped table-hover"> 
             <thead>
                 <tr>
-                    <th>Fecha</th>
                     <th>Nombre</th>
-                    <th>Cedula</th>
-                    <th>Monto</th>
+                    <th>Descripción</th>
+                    <th>Valor</th>   
+                    <th>Número de ventas</th>            
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of VectorFR3; index as i">
-
-                    <td>{{item.Fecha}}</td>
-                    <td>Cristianooooo</td>
-                    <td>Ronaldoooooooo</td>
-                    <td>{{item.monto}}</td>
-                  
+                <tr>
+                    <td>{{productoMasVendido.Nombre}}</td>
+                    <td>{{productoMasVendido.Descripcion}}</td>
+                    <td>{{productoMasVendido.Valor}}</td>  
+                    <td>{{cantidadProductoMasVendido}}</td>     
                 </tr>
             </tbody>
         </table>

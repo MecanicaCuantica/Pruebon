@@ -27,6 +27,7 @@ export class ReportesComponent implements OnInit {
   mayorID: any;
   productoMasVendidoID: any;
   productoMasVendido: any;
+  cantidadProductoMasVendido: any;
   opcion1: boolean = false;
   opcion2: boolean = false;
   opcion3: boolean = false;
@@ -119,8 +120,8 @@ export class ReportesComponent implements OnInit {
       this.opcion2 = false;
       this.opcion3 = false;
       this.opcion4 = false;
-      var monto: any
-      var aux = 0
+      var monto: any;
+      var aux = 0;
       for(var i=0; i<this.ventas.length; i++){
         monto = 0
         if (this.verificarSiesta(this.ventas[i].idCliente, this.clientesMonto)){
@@ -221,12 +222,12 @@ export class ReportesComponent implements OnInit {
 
   elegirProductoMasVendido(){
     this.productoMasVendidoID = this.productosVentaTiene[0][0];
-    var cantidadProductoMasVendido = this.productosVentaTiene[0][1];
+    this.cantidadProductoMasVendido = this.productosVentaTiene[0][1];
     for(var i = 0; i < this.productosVentaTiene.length; i++){
-      if (this.productosVentaTiene[i][1] > parseInt(cantidadProductoMasVendido))
+      if (this.productosVentaTiene[i][1] > parseInt(this.cantidadProductoMasVendido))
       {
         this.productoMasVendidoID = this.productosVentaTiene[i][0];
-        cantidadProductoMasVendido = this.productosVentaTiene[i][1];
+        this.cantidadProductoMasVendido = this.productosVentaTiene[i][1];
       }
   }
   }
