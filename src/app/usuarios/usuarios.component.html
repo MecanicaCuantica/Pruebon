@@ -18,33 +18,20 @@
             <table class="table table-striped table-hover"> 
                 <thead>
                     <tr>
-                        <th>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="selectAll">
-                                <label for="selectAll"></label>
-                            </span>
-                        </th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Cedula</th>
-                        <th>Email</th>
-                        <th>Ocupacion</th>
-                        <th>Direccion</th>
-                        <th>Telefono</th>
-                        <!-- <th>Usuario</th> -->
-                        <th>Contrasena</th>     
-                        <th>Acciones</th>
-                                            
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Nombre</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Apellido</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Cedula</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Email</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Ocupacion</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Direccion</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Telefono</th>
+                        <!-- <th style="background:  hsl(209, 58%, 38%) ; color: white;">Usuario</th> -->
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Contrasena</th>
+                        <th style="background:  hsl(209, 58%, 38%) ; color: white;">Acciones</th>                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of Usuarios; index as i">
-                        <td>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                <label for="checkbox1"></label>
-                            </span>
-                        </td>
                         <td>{{item.Nombre}}</td>
                         <td>{{item.Apellido}}</td>
                         <td>{{item.Cedula}}</td>

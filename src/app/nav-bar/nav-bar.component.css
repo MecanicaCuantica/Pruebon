@@ -1,6 +1,13 @@
 .espacio{
-    width: 750px;
+    width: 650px;
 }
 li{
     font-size: 13px;
+}
+a{
+    font-size: 15px;
+    color: azure;
+}
+a:hover{
+    color: rgb(218, 218, 218);
 }
