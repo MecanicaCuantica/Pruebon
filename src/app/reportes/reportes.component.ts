@@ -22,12 +22,13 @@ export class ReportesComponent implements OnInit {
   mejorCliente: any;
   mayor: any;
   mayorID: any;
-
+  ventasReportes: any[] = [];
+  VectorFR3: any[] = [];
+  
   constructor(private reportesService:  ReportesService) { }
 
   ngOnInit(): void {
-    this.getVentas();
-    this.getClientes();
+    this.getVentas()
   }
   
   getClientes(){
@@ -54,7 +55,8 @@ export class ReportesComponent implements OnInit {
           ...element.payload.doc.data()
         })
       });
-      console.log("reportes",this.ventas);
+      console.log("Ventas",this.ventas);
+      this.Fechas()
     })
   }
 
@@ -123,6 +125,33 @@ export class ReportesComponent implements OnInit {
         break
       }
     }
+  }
+
+  Fechas(){
+    for(var i =0;i < this.ventas.length;i++){
+      this.ventasReportes.push(this.ventas[i])
+      this.ventasReportes[i].Fecha = this.ventasReportes[i].Fecha.toDate()
+      
+    }
+  }
+  reporte3(FechaInicial:any,FechaFinal:any){
+    var Inicial = FechaInicial.split("-");
+    var Final = FechaFinal.split("-");
+   
+
+    var InicialFactor = new Date(parseInt(Inicial[0]),parseInt(Inicial[1])-1,parseInt(Inicial[2]))
+    var FinalFactor = new Date(parseInt(Final[0]),parseInt(Final[1])-1,parseInt(Final[2]),23,59,59)
+    console.log(InicialFactor)
+    console.log(FinalFactor)
+
+    
+
+    for(var j =0;j < this.ventasReportes.length;j++){
+      if((this.ventasReportes[j].Fecha > InicialFactor) && (this.ventasReportes[j].Fecha < FinalFactor)){
+        this.VectorFR3.push(this.ventasReportes[j])
+      }
+    }
+    console.log(this.VectorFR3)
   }
 
 
