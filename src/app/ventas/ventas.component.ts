@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { right } from '@popperjs/core';
 
+
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -19,7 +20,7 @@ export class VentasComponent implements OnInit {
   id: any = "";
   clienteF: any;
   validaId: any;
-  monto: any;
+  monto: number = 0;
   fecha: any;
   ventas: any[] = [];
   idVentaActual: any;
@@ -93,6 +94,12 @@ export class VentasComponent implements OnInit {
     }
   }
 
+  sumaValor(){
+    for(var i=0; i<this.carrito.length;i++){
+      this.monto = this.monto + parseInt(this.carrito[i].Valor);
+    }
+  }
+
   finalizarCompra(){
     
     if (this.validaId == true && this.carrito.length != 0){
@@ -115,13 +122,8 @@ export class VentasComponent implements OnInit {
     
     var y = 100;
     var total = 0;
-      if (this.carrito.length == 1){
-        this.monto = this.carrito[0].Valor;
-      }
-      else{
-        this.monto = this.carrito.reduce((a, b) => parseInt(a.Valor) + parseInt(b.Valor));
-      }  
-      console.log("monto", this.monto);
+      this.sumaValor()
+      console.log("monto234", this.monto);
       this.fecha = new Date();
       console.log("carrito",this.carrito)
       for(var i=0; i<this.carrito.length; i++){
@@ -191,9 +193,10 @@ export class VentasComponent implements OnInit {
   }
 
   editarCliente() {  
+    //console.log("this.clienteF.Compras",this.clienteF.Compras);
     var id: any  
       var Clientes: any = {
-        Compras: parseInt(this.clienteF.Compras) + parseInt(this.monto)          
+        Compras: parseInt(this.clienteF.Compras) + this.monto         
       }
       id = this.clienteF.id;
         this.ventasService.editarCliente(id, Clientes).then(() => {
@@ -206,14 +209,14 @@ export class VentasComponent implements OnInit {
    /* console.log(this.carrito.indexOf(item)) */ 
     var itemAux = Object.assign({},item);
     var cantidadAux = itemAux.Cantidad;
-    console.log("cantidadAux",cantidadAux)
+    //console.log("cantidadAux",cantidadAux)
     //console.log("hola", itemAux)
     //console.log("itemAux indexOf:",this.carrito.indexOf(itemAux))
     const resultado = this.carrito.find(elemento => elemento.id === item.id);
-    console.log("resultado", resultado)
+    //console.log("resultado", resultado)
 
     if (resultado !== undefined){
-      console.log("holaNull")
+      //console.log("holaNull")
       var index = this.carrito.indexOf(resultado);
       if (cantidadAux != 0){
         this.carrito[index].Cantidad = 1 + parseInt(this.carrito[index].Cantidad);
