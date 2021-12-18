@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     const {email,password} = this.usuario
     this.authService.login(email,password).then(res =>{
       console.log("Inicio de sesión exitoso",res)
-      if(this.usuario.email == "niche@hola.com"){
+      if(this.usuario.email == "admin@admin.com"){
         localStorage.setItem('admin',this.usuario.email)
       }
       

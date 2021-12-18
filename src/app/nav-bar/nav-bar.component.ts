@@ -16,7 +16,7 @@ export class NavBarComponent implements OnInit {
 
   mostrarCrearU: boolean = false
   ngOnInit(): void {
-    if(localStorage.getItem('admin') == "niche@hola.com"){
+    if(localStorage.getItem('admin') == "admin@admin.com"){
       
       this.mostrarCrearU = true
     }
