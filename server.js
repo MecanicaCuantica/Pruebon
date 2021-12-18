@@ -3,11 +3,11 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/PROYECTO2_ANGULAR'));
+app.use(express.static(__dirname + '/dist/PROYECTO2_ANGULAR'));
 
-app.get('/*',(req,res) =>
-res.sendFile(index.html, {root: 'dist/angular-heroku/'}),
-);
+app.get('/*',function(req,res) {
+res.sendFile(path.join(__dirname + '/dist/acme-veterinaria/index.html')); });
+
 
 app.listen(proces.env.PORT || 8080);
 /* hola */
