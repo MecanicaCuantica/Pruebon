@@ -122,7 +122,7 @@ export class VentasComponent implements OnInit {
     
     var y = 100;
     var total = 0;
-      this.sumaValor()
+      this.sumaValor();
       console.log("monto234", this.monto);
       this.fecha = new Date();
       console.log("carrito",this.carrito)
