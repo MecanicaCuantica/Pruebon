@@ -145,6 +145,7 @@ export class ReportesComponent implements OnInit {
       }
       console.log("clientesMonto",this.clientesMonto);
       this.elegirMayor();
+      console.log("mejorCliente:", this.mejorCliente);
       //return this.elegirMayor();
     }
     else if (valor == "2"){
@@ -176,17 +177,14 @@ export class ReportesComponent implements OnInit {
   }
 
   elegirMayor(){
-    this.mayor = this.clientesMonto[0][1];
-    this.mayorID = this.clientesMonto[0][0];
-    for(var i = 0; i < this.clientesMonto.length; i++){
-      if (this.clientesMonto[i][1] > this.mayor)
-      {
-        this.mayorID = this.clientesMonto[i][0]; // OJO, CAMBIAR SI SE DAÑA EL REPORTE 1
-        this.mayor = this.clientesMonto[i][1];
+    this.mejorCliente = this.clientes[0];
+    //console.log("mejorCliente[0]:",this.mejorCliente);
+    for(var i=0;i<this.clientes.length;i++){
+      console.log("mejorCliente[i]:",this.clientes);
+      if(this.mejorCliente.Compras <= this.clientes[i].Compras){
+        this.mejorCliente = this.clientes[i];   
       }
-  }
-  console.log("mayorID:",this.mayorID)
-  console.log("mayor:",this.mayor)
+    }
   }
 
   obtenerClienteMayor(valor: any){
@@ -194,8 +192,7 @@ export class ReportesComponent implements OnInit {
     for(var i=0;i<this.clientes.length;i++){
       if(this.clientes[i].id == this.mayorID){
         this.mejorCliente = this.clientes[i];
-        console.log(this.clientes[i]); // Acomodar para mostrar en la interfaz
-        
+        console.log(this.clientes[i]); // Acomodar para mostrar en la interfaz    
         break
       }
     }
