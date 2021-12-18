@@ -105,6 +105,7 @@ export class VentasComponent implements OnInit {
     if (this.validaId == true && this.carrito.length != 0){
     console.log("validaID",this.validaId);
     const doc = new jsPDF();
+    doc.setFontSize(12);
     var img = new Image();
     var img2 = new Image();
     img.src = "assets/Imagenes/topfac.png";
@@ -116,13 +117,14 @@ export class VentasComponent implements OnInit {
     doc.text('Cobrar a:', 10, 50);
     doc.text((this.clienteF.Nombre).toString(), 10, 57);
     doc.text((this.clienteF.Cedula).toString(), 10, 62);
-    doc.text('Enviar a:', 70, 50);
-    doc.text((this.clienteF.Direccion).toString(), 70, 57);
-    doc.text('Tulua', 70, 62);
+    doc.text('Enviar a:', 55, 50);
+    doc.text((this.clienteF.Direccion).toString(), 55, 57);
+    doc.text('Tulua', 55, 62);
+
     
     var y = 100;
     var total = 0;
-      this.sumaValor()
+      this.sumaValor();
       console.log("monto234", this.monto);
       this.fecha = new Date();
       console.log("carrito",this.carrito)
@@ -133,18 +135,22 @@ export class VentasComponent implements OnInit {
         doc.text((this.carrito[i].Cantidad).toString(),70,y);
         doc.text((this.carrito[i].Valor/this.carrito[i].Cantidad).toString(),130,y);
         doc.text((this.carrito[i].Valor).toString(),180,y);
+        doc.text('______________________________________________________________________________',10,y)
       }
-      doc.text('Fecha:', 100, 50);
-      doc.text((this.fecha).toString(), 140, 50);
-      doc.text('Condiciones de pago:', 100, 60);
-      doc.text('Efectivo', 140, 60);
-      doc.text('Fecha de vencimiento:', 100, 70);
-      doc.text((this.fecha).toString(), 140, 70);
-      doc.text('Saldo adeudado:', 100, 80);
-      doc.text((total).toString(), 140, 80);
+      doc.text('Fecha:', 150, 50,{align: "right"});
+      doc.text((this.fecha.toDateString()).toString(), 165, 50);
+      doc.text('Condiciones de pago:', 150, 60,{align: "right"});
+      doc.text('Efectivo', 165, 60);
+      doc.text('Fecha de vencimiento:', 150, 70,{align: "right"});
+      doc.text((this.fecha.toDateString()).toString(), 165, 70);
+      doc.text('Saldo adeudado:', 150, 80,{align: "right"});
+      doc.text((total).toString(), 165, 80);
+
 
       y=y+10;
-      doc.text((total).toString(),180,y);
+      doc.text('Total',165,y+15);
+      doc.text((total).toString(),180,y+15);
+
       console.log("fecha",this.fecha);
       this.agregarVenta();   
       console.log("COMPRA EXITOSA");  
