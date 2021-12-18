@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { right } from '@popperjs/core';
 
+
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -17,10 +18,10 @@ export class VentasComponent implements OnInit {
   searchText: any;
   clientes: any[] = [];
   id: any = "";
+  clienteF: any;
   validaId: any;
-  monto: any;
+  monto: number = 0;
   fecha: any;
-  hoy: any;
   ventas: any[] = [];
   idVentaActual: any;
 
@@ -72,13 +73,13 @@ export class VentasComponent implements OnInit {
       console.log(this.Productos);
     })
   }
-  clienteF: any;
   clienteAux: any;
   verificarCliente(cliente: any){
     
     this.clienteAux = cliente;
     
     const resultado = this.clientes.find(elemento => elemento.Cedula === this.clienteAux);
+    this.clienteF = resultado;
     console.log("resultado:", resultado);
     if (resultado !== undefined){
       this.clienteF=resultado;
@@ -89,6 +90,13 @@ export class VentasComponent implements OnInit {
     }
     else{
       this.clienteAux = "CLIENTE NO ENCONTRADO"
+      this.validaId = false
+    }
+  }
+
+  sumaValor(){
+    for(var i=0; i<this.carrito.length;i++){
+      this.monto = this.monto + parseInt(this.carrito[i].Valor);
     }
   }
 
@@ -97,7 +105,6 @@ export class VentasComponent implements OnInit {
     if (this.validaId == true && this.carrito.length != 0){
     console.log("validaID",this.validaId);
     const doc = new jsPDF();
-    doc.setFontSize(12);
     var img = new Image();
     var img2 = new Image();
     img.src = "assets/Imagenes/topfac.png";
@@ -109,21 +116,15 @@ export class VentasComponent implements OnInit {
     doc.text('Cobrar a:', 10, 50);
     doc.text((this.clienteF.Nombre).toString(), 10, 57);
     doc.text((this.clienteF.Cedula).toString(), 10, 62);
-    doc.text('Enviar a:', 55, 50);
-    doc.text((this.clienteF.Direccion).toString(), 55, 57);
-    doc.text('Tulua', 55, 62);
+    doc.text('Enviar a:', 70, 50);
+    doc.text((this.clienteF.Direccion).toString(), 70, 57);
+    doc.text('Tulua', 70, 62);
     
     var y = 100;
     var total = 0;
-      if (this.carrito.length == 1){
-        this.monto = this.carrito[0].Valor;
-      }
-      else{
-        this.monto = this.carrito.reduce((a, b) => parseInt(a.Valor) + parseInt(b.Valor));
-      }  
-      console.log("monto", this.monto);
+      this.sumaValor()
+      console.log("monto234", this.monto);
       this.fecha = new Date();
-      //this.hoy= new toDateString();
       console.log("carrito",this.carrito)
       for(var i=0; i<this.carrito.length; i++){
         total=total+parseInt(this.carrito[i].Valor);
@@ -132,21 +133,18 @@ export class VentasComponent implements OnInit {
         doc.text((this.carrito[i].Cantidad).toString(),70,y);
         doc.text((this.carrito[i].Valor/this.carrito[i].Cantidad).toString(),130,y);
         doc.text((this.carrito[i].Valor).toString(),180,y);
-        doc.text('______________________________________________________________________________',10,y)
       }
-      
-      doc.text('Fecha:', 150, 50,{align: "right"});
-      doc.text((this.fecha.toDateString()).toString(), 165, 50);
-      doc.text('Condiciones de pago:', 150, 60,{align: "right"});
-      doc.text('Efectivo', 165, 60);
-      doc.text('Fecha de vencimiento:', 150, 70,{align: "right"});
-      doc.text((this.fecha.toDateString()).toString(), 165, 70);
-      doc.text('Saldo adeudado:', 150, 80,{align: "right"});
-      doc.text((total).toString(), 165, 80);
+      doc.text('Fecha:', 100, 50);
+      doc.text((this.fecha).toString(), 140, 50);
+      doc.text('Condiciones de pago:', 100, 60);
+      doc.text('Efectivo', 140, 60);
+      doc.text('Fecha de vencimiento:', 100, 70);
+      doc.text((this.fecha).toString(), 140, 70);
+      doc.text('Saldo adeudado:', 100, 80);
+      doc.text((total).toString(), 140, 80);
 
       y=y+10;
-      doc.text('Total',165,y+15);
-      doc.text((total).toString(),180,y+15);
+      doc.text((total).toString(),180,y);
       console.log("fecha",this.fecha);
       this.agregarVenta();   
       console.log("COMPRA EXITOSA");  
@@ -191,11 +189,19 @@ export class VentasComponent implements OnInit {
           console.log("Editado con exito");
         })
       }
-  
-
     }
+  }
 
-
+  editarCliente() {  
+    //console.log("this.clienteF.Compras",this.clienteF.Compras);
+    var id: any  
+      var Clientes: any = {
+        Compras: parseInt(this.clienteF.Compras) + this.monto         
+      }
+      id = this.clienteF.id;
+        this.ventasService.editarCliente(id, Clientes).then(() => {
+          console.log("Editado con exito");
+        })  
   }
 
   agregarCarrito(item: any){
@@ -203,14 +209,14 @@ export class VentasComponent implements OnInit {
    /* console.log(this.carrito.indexOf(item)) */ 
     var itemAux = Object.assign({},item);
     var cantidadAux = itemAux.Cantidad;
-    console.log("cantidadAux",cantidadAux)
+    //console.log("cantidadAux",cantidadAux)
     //console.log("hola", itemAux)
     //console.log("itemAux indexOf:",this.carrito.indexOf(itemAux))
     const resultado = this.carrito.find(elemento => elemento.id === item.id);
-    console.log("resultado", resultado)
+    //console.log("resultado", resultado)
 
     if (resultado !== undefined){
-      console.log("holaNull")
+      //console.log("holaNull")
       var index = this.carrito.indexOf(resultado);
       if (cantidadAux != 0){
         this.carrito[index].Cantidad = 1 + parseInt(this.carrito[index].Cantidad);
@@ -256,7 +262,7 @@ export class VentasComponent implements OnInit {
       this.getVentas();     
       this.agregarVentaTiene(this.idVentaActual);
       this.editarProducto();
-      
+      this.editarCliente();
       console.log("Venta Llego");
     }).catch(error => {
       console.log(error);

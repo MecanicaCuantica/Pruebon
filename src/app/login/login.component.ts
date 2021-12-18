@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../Services/auth.service';
-import { VarService } from '../Services/var.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { VarService } from '../Services/var.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService:AuthService,private router: Router,private variabelP:VarService) { }
+  constructor(private authService:AuthService,private router: Router) { }
 
   ingreso: boolean = false;
   usuario = {
