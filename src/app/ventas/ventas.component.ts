@@ -94,7 +94,9 @@ export class VentasComponent implements OnInit {
   }
 
   finalizarCompra(){
-     
+    
+    if (this.validaId == true && this.carrito.length != 0){
+    console.log("validaID",this.validaId);
     const doc = new jsPDF();
     var img = new Image();
     var img2 = new Image();
@@ -111,10 +113,8 @@ export class VentasComponent implements OnInit {
     doc.text((this.clienteF.Direccion).toString(), 70, 57);
     doc.text('Tulua', 70, 62);
     
-
     var y = 100;
     var total = 0;
-    if (this.validaId == true){
       if (this.carrito.length == 1){
         this.monto = this.carrito[0].Valor;
       }
@@ -154,7 +154,17 @@ export class VentasComponent implements OnInit {
       
     }
     else{
-      this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE"
+      if(this.carrito.length == 0 && this.validaId == true){
+        this.clienteAux = "CARRITO VACÍO";
+      }
+      else if (this.validaId != true && this.carrito.length == 0){
+        this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE Y CARRITO VACÍO";     
+      }
+      else{
+        this.clienteAux = "DEBE INGRESAR EL ID DEL CLIENTE";
+      }
+      
+      
     }
     
 
