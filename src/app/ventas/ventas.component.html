@@ -1,56 +1,38 @@
 <app-nav-bar></app-nav-bar>
-<body background=
-"assets\Imagenes\portada5.jpg">
+<body>
     
-
-  <!-- <tr *ngFor="let item of Clientes; index as i">
-  <td>
-      <span class="custom-checkbox">
-          <input type="checkbox" id="checkbox1" name="options[]" value="1">
-          <label for="checkbox1"></label>
-      </span>
-  </td>
-  <td>{{item.Nombre}}</td>
-  <td>{{item.Cedula}}</td>
-  <td>{{item.Email}}</td>
-  <td>{{item.Direccion}}</td>
-  <td>{{item.Telefono}}</td>
-  <td>{{item.Compras}}</td>
-  <td>
-      <a  class="edit" data-toggle="modal" [routerLink]= "['/EditCliente/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-      <a  class="delete" data-toggle="modal" (click)="eliminarClientes(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-  </td>
-</tr> -->
 <br>
 <div class="entradas">
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Busqueda producto</span>
-    <div class="xd">
-        <input type="text" class="form-control" placeholder="Busque por nombre, descripción o valor" aria-label="producto" aria-describedby="basic-addon1" [(ngModel)]="searchText">
-    </div>
-    <div class="xd2"> </div>
-        <span class="input-group-text" id="basic-addon1">Cliente</span>
+    <div class="input-group mb-3">
+        <span style="margin-left: 15px; background:  hsl(209, 58%, 38%) ; color: white;" class="input-group-text" id="basic-addon1">Busqueda producto</span>
         <div class="xd">
-            <input type="text" class="form-control" placeholder="Ingrese la cedula aqui" #clienteID aria-label="producto ID" aria-describedby="basic-addon1">
+            <input style="width: 318px;" type="text" class="form-control" placeholder="Busque por nombre, descripción o valor" aria-label="producto" aria-describedby="basic-addon1" [(ngModel)]="searchText">
         </div>
-        
+    
+            <span style="margin-left: 100px; background:  hsl(209, 58%, 38%) ; color: white;" class="input-group-text" id="basic-addon1">Cliente</span>
+            <div class="xd">
+                <input style="width: 390px;" type="text" class="form-control" placeholder="Ingrese la cedula aquí" #clienteID aria-label="producto ID" aria-describedby="basic-addon1">
+            </div>
+            
+    </div>
+    <div class="btn-group">
+        <button style="margin-top: 28px;" type="button" class="btn btn-primary" (click)="verificarCliente(clienteID.value)">Verificar</button> 
+        <button style="margin-top: 28px; margin-left: 8px;" type="button" class="btn btn-success" (click)="finalizarCompra()">Finalizar</button>  
+    </div>
+    <p>{{clienteAux}}</p>
 </div>
-<div class="btn-group">
-  <button type="button" class="btn btn-primary" (click)="verificarCliente(clienteID.value)">Verificar</button>
-  <div class = "xd3"></div>
-  <button type="button" class="btn btn-dark" (click)="finalizarCompra()">Finalizar</button>  
-</div>
-<p>{{clienteAux}}</p>
-</div>
+
+<!-- TABLAS -->
 <div class="tablas"> 
 <div class="form-floating">
-    <table class="table"> 
+    <table class="table table-striped table-hover" style="text-align: center; margin-left: 15px; width: auto;"> 
       <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Cantidad</th>
-            <th>Valor</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Nombre</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Descripción</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Cantidad</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Valor</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Añadir</th>
         </tr>
     </thead>
 
@@ -61,7 +43,7 @@
           <td>{{item.Cantidad}}</td>
           <td>{{item.Valor}}</td>
           <td>
-              <a  class="edit" data-toggle="modal" (click) = "agregarCarrito(item)"><i class="material-icons" data-toggle="tooltip" title="Edit" >add</i></a>
+              <a style="cursor:pointer ;" class="edit" data-toggle="modal" (click) = "agregarCarrito(item)"><i class="material-icons" data-toggle="tooltip" title="Añadir" >add</i></a>
               
           </td>
       </tr>
@@ -73,13 +55,14 @@
 </div>
 <div class="tablas2">
 <div class="texto2">
-    <table class="table">
+    <table class="table table-striped table-hover" style="margin-left: 71px; width: 200px;">
       <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Cantidad</th>
-            <th>Valor</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Nombre</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Descripción</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Cantidad</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Valor</th>
+            <th style="background:  hsl(209, 58%, 38%) ; color: white;">Eliminar</th>
         </tr>
     </thead>
         <tbody>
@@ -89,7 +72,7 @@
              <td>{{item.Cantidad}}</td> 
             <td>{{item.Valor}}</td>
             <td>
-                <a  class="edit" data-toggle="modal" (click) = "eliminar(item)"><i class="material-icons" data-toggle="tooltip" title="Edit">delete</i></a>
+                <a  class="edit" data-toggle="modal" (click) = "eliminar(item)"><i class="material-icons" data-toggle="tooltip" title="Borrar">delete</i></a>
                 
             </td>
         </tr>

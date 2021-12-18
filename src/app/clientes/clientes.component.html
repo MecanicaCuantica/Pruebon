@@ -35,7 +35,7 @@
                         <td>{{item.Compras}}</td>
                         <td>
                             <a  class="edit" data-toggle="modal" [routerLink]= "['/EditCliente/',item.id]"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a  class="delete" data-toggle="modal" (click)="eliminarClientes(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a  style="cursor:pointer ;" class="delete" data-toggle="modal" (click)="eliminarClientes(item.id)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
                     
@@ -63,7 +63,7 @@
                     <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
                 </ul>
             </div> -->
-            <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+
         </div>
         
     </div>        
