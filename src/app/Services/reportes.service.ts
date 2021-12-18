@@ -13,8 +13,16 @@ export class ReportesService {
     return this.firestore.collection('ventas', ref => ref.orderBy("Fecha", "asc")).snapshotChanges();
   }
 
+  getVentaTiene(): Observable<any> {
+    return this.firestore.collection('ventaTiene').snapshotChanges();
+  }
+
   getClientes(): Observable<any> {
     return this.firestore.collection('clientes').snapshotChanges();
+  }
+
+  getProductos(): Observable<any> {
+    return this.firestore.collection('productos').snapshotChanges();
   }
 
 

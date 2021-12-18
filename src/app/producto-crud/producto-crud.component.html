@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="card text-center">
-                    <div class="card-body">
+                    <div style="background:  hsl(209, 58%, 38%) ; color: white;" class="card-body">
                         <h3>{{titulo}}
                             <div *ngIf="loading" class="spinner-border float-right" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control form-control-lg" formControlName="Descripcion"
-                                        placeholder="Descripcion">
+                                        placeholder="Descripción">
                                 </div>
                             </div>
                             <input type="text" class="form-control form-control-lg mt-3" formControlName="Cantidad"
@@ -32,7 +32,7 @@
                             <div class="mt-3">
                                 <button type="text" class="btn btn-danger"
                                 routerLink="/ManejoProductos">Volver</button>
-                                <button type="submit" class="btn btn-success">Agregar</button>
+                                <button style="margin-left: 10px;" type="submit" class="btn btn-success">Agregar</button>
                             </div>
                         </form>
                     </div>

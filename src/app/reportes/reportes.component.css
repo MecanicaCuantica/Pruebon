@@ -1,6 +1,9 @@
+.centrar{
+    text-align: center;
+}
 .form-select{
-    width: 200px;
-    margin-left: 50px;
+    width: 240px;
+   
 }
 
 .badge{
@@ -17,7 +20,7 @@
 body {
     color: #566787;
     height: auto;
-    background: azure;
+   
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
     
