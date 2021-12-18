@@ -28,8 +28,8 @@ export class ProductoCRUDComponent implements OnInit {
       this.CreateProducto = this.fb.group({
         Nombre: ['', Validators.required],
         Descripcion: ['', Validators.required],
-        Cantidad: ['', Validators.required],
-        Valor: ['', Validators.required]
+        Cantidad: ['', [Validators.pattern("^[0-9]*$"),Validators.required]],
+        Valor: ['', [Validators.pattern("^[0-9]*$"),Validators.required]]
     })
     this.id = this.aRoute.snapshot.paramMap.get('id');
     console.log(this.id)
@@ -65,6 +65,7 @@ export class ProductoCRUDComponent implements OnInit {
 
 
     }
+    
     this.Productoservice.agregarProducto(Producto).then(() =>{
       console.log("Producto Llego");
       this.router.navigate(['/ManejoProductos'])

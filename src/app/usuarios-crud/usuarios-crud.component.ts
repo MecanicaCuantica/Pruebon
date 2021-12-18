@@ -25,12 +25,12 @@ export class UsuariosCRUDComponent implements OnInit {
     private router: Router,
     private aRoute: ActivatedRoute) {
     this.CreateUsuario = this.fb.group({
-      Nombre: ['', Validators.required],
-      Cedula: ['', Validators.required],
+      Nombre: ['',[Validators.pattern("^[a-zA-Z]*$"),Validators.required]],
+      Cedula: ['',[Validators.pattern("^[0-9]*$"),Validators.required]],
       Email: ['', [Validators.required, Validators.email]],
       Direccion: ['', Validators.required],
-      Telefono: ['', Validators.required],
-      Apellido: ['', Validators.required],
+      Telefono: ['',[Validators.pattern("^[0-9]*$"),Validators.required]],
+      Apellido: ['',[Validators.pattern("^[a-zA-Z]*$"),Validators.required]],
       Ocupacion: ['', Validators.required],
       // Usuario: ['', Validators.required],
       Contrasena: ['', [Validators.required, Validators.minLength(6)]]
