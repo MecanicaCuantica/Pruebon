@@ -1,3 +1,6 @@
+.centrar{
+    text-align: center;
+}
 .form-select{
     width: 240px;
    
@@ -17,7 +20,7 @@
 body {
     color: #566787;
     height: auto;
-    background: azure;
+   
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
     
