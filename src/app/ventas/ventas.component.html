@@ -23,8 +23,6 @@
 </div>
 
 <!-- TABLAS -->
-<br>
-<br>
 <div class="tablas"> 
 <div class="form-floating">
     <table class="table table-striped table-hover" style="text-align: center; margin-left: 15px; width: auto;"> 
@@ -45,7 +43,7 @@
           <td>{{item.Cantidad}}</td>
           <td>{{item.Valor}}</td>
           <td>
-              <a  class="edit" data-toggle="modal" (click) = "agregarCarrito(item)"><i class="material-icons" data-toggle="tooltip" title="Edit" >add</i></a>
+              <a style="cursor:pointer ;" class="edit" data-toggle="modal" (click) = "agregarCarrito(item)"><i class="material-icons" data-toggle="tooltip" title="Añadir" >add</i></a>
               
           </td>
       </tr>
@@ -74,7 +72,7 @@
              <td>{{item.Cantidad}}</td> 
             <td>{{item.Valor}}</td>
             <td>
-                <a  class="edit" data-toggle="modal" (click) = "eliminar(item)"><i class="material-icons" data-toggle="tooltip" title="Edit">delete</i></a>
+                <a  class="edit" data-toggle="modal" (click) = "eliminar(item)"><i class="material-icons" data-toggle="tooltip" title="Borrar">delete</i></a>
                 
             </td>
         </tr>

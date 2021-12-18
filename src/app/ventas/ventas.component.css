@@ -1,3 +1,7 @@
+
+a{
+    cursor:pointer;
+}
 body{    
     width: auto;
     height: auto;
@@ -42,12 +46,13 @@ body{
     
 }
 p{
-    margin-left: 720px;
-    margin-top: -50px;
+    margin-left: 700px;
+    margin-top: -20px;
     font-size: 20px;
-    color: rgb(255, 255, 255);
+    color: hsl(209, 58%, 38%) ;
     font-style: bold;
-    font-family: monospace;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+
 }
 .entradas
 {
