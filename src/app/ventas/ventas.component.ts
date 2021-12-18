@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { VentaServiceService } from '../Services/venta-service.service';
+
+// PDFS
 import jsPDF from 'jspdf';
+
+
 import html2canvas from 'html2canvas';
 import { right } from '@popperjs/core';
 
